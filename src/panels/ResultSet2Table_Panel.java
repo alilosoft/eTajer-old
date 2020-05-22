@@ -26,7 +26,7 @@ public abstract class ResultSet2Table_Panel<Entity extends EntityClass, DAO exte
     private int filterMode;
 
     /**
-     * Create un-checkable table.
+     * Create uncheckable table.
      *
      * @param owner
      */
