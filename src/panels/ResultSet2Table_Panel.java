@@ -67,10 +67,6 @@ public abstract class ResultSet2Table_Panel<Entity extends EntityClass, DAO exte
 
         table.setFillsViewportHeight(true);
         scrollPan.setViewportView(table);
-        // *** delete me
-        JTable testTable = new  JTable(model);
-        //scrollPan.setViewportView(testTable);
-        //**** end delete me
         customizeUI();
         initTableBehavior();
     }
