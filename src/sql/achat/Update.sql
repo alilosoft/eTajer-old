@@ -1,0 +1,1 @@
+UPDATE ACHAT SET ID_FR = ?, NUM = ?, "DATE" = ?, HEURE = ? WHERE ID = ?

@@ -1,0 +1,1 @@
+UPDATE VENTE SET ID_USER = ?, ID_CL = ?, ID_TYPE = ?,  NUM = ?, "DATE" = ?, HEURE = ? WHERE ID = ?

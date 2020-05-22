@@ -1,0 +1,1 @@
+SELECT * FROM V_VENTE_ALL WHERE "Date" >= ? AND "Date" <=  ?

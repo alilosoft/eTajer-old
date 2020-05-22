@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root>
+    <TABLE NAME = "EMBALAGE" COLS = "ID, DES, QTE_LOT">
+        <COLS>
+            <COL NAME = "" TYPE = "" LENGTH = ""  />
+        </COLS>
+        
+        <QUERIES>
+            <QUERY NAME = "CREATE">
+                CREATE TABLE EMBALLAGE  (   ID  INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+                DES VARCHAR(25) NOT NULL UNIQUE, QTE_LOT INTEGER NOT NULL DEFAULT 1,
+                CONSTRAINT PACK_PK PRIMARY KEY (ID))                                                     
+            </QUERY>
+        
+            <QUERY NAME = "SELECT_ALL">
+                SELECT * FROM EMBALLAGE_V
+            </QUERY>
+            
+            <QUERY NAME = "SELECT_ALL_WHERE_ID" PARAMS = "ID">
+                SELECT * FROM EMBALLAGE WHERE ID = ?
+            </QUERY>
+        
+            <QUERY NAME = "INSERT" PARAMS = "DES, QTE_LOT">
+                INSERT INTO EMBALLAGE (DES, QTE_LOT) VALUES (?,?)
+            </QUERY>
+        
+            <QUERY NAME = "UPDATE" PARAMS = "DES, QTE_LOT, ID">
+                UPDATE EMBALLAGE  SET DES = ? , QTE_LOT = ? WHERE ID = ?
+            </QUERY>
+        
+            <QUERY NAME = "DELETE_ALL">
+                DELETE FROM EMBALLAGE
+            </QUERY>
+            <QUERY NAME = "DELETE_WHERE_ID" PARAMS = "ID">
+                DELETE FROM EMBALLAGE WHERE ID = ?
+            </QUERY>
+        </QUERIES>
+        
+    </TABLE>
+    
+    <TABLE NAME = "CLIENT" COLS = "">
+        
+    </TABLE>
+    
+    <VIEW NAME = "V_CLIENT">
+        <QUERY NAME = "CREATE">
+            SELECT ID, 'NAME' AS "Client", ADR AS "Adresse", TEL AS "N° Téléphone", CREDIT AS "Crédit (DA)", NUM_RC AS "N° Registre.C", NUM_FISC AS "ID.Fiscal", NUM_ART AS "Article d'imposition" FROM CLIENT
+        </QUERY>
+    </VIEW>
+    
+    <VIEW NAME = "PRODUIT_V1">
+        <QUERY NAME = "CREATE">
+            SELECT ID, DES AS "PRODUIT", PU_ACHAT AS "PU.Achat(DA)", PU_VENTE_GR AS "PU.Vente.Gr", PU_VENTE_DT AS "PU.Vente.Dt" FROM PRODUIT
+        </QUERY>
+    </VIEW>
+    
+    <VIEW NAME = "PRODUIT_V2">
+        <QUERY NAME = "CREATE">
+            SELECT PROD.ID, PROD.ID_CATEG, PROD.ID_STK, PROD.DES AS "Produit", PROD.PU_ACHAT AS "PU.Achat", PROD.MARGE_GR AS "Marge.Gr", PROD.MARGE_DT AS "Marge.Dt", SUM(ART.QTE_STK_REEL) AS "Stk.Réel", PROD.STK_MIN as "Seuil.Stk" 
+            FROM PRODUIT PROD LEFT JOIN (ARTICLE ART INNER JOIN ACHAT ACH ON ACH.ID = ART.ID_ACHAT AND ACH.VALIDE = 'Y') ON PROD.ID = ART.ID_PROD 
+            GROUP BY PROD.ID, PROD.ID_CATEG, PROD.ID_STK, PROD.DES, PROD.PU_ACHAT, PROD.MARGE_GR, PROD.MARGE_DT, PROD.STK_MIN
+            ORDER BY PROD.DES
+        </QUERY>
+    </VIEW>
+    
+    
+        
+</root>

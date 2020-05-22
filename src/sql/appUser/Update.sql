@@ -1,0 +1,1 @@
+UPDATE APP_USER SET LOGIN = ?, PW = ?, ID_GROUP = ? WHERE ID = ?;

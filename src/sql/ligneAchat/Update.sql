@@ -1,0 +1,1 @@
+UPDATE LIGNE_ACH SET ID_ACH = ?, ID_PROD = ?, ID_EN_STK = ?, PU_ACH = ?, QTE = ?, UNITE = ?, QTE_UNIT = ?, TOTAL_LACH = ? WHERE ID = ?; 

@@ -1,0 +1,1 @@
+SELECT SUM("Bénifice") FROM JOURNAL_VNT WHERE "Date" >= ? AND "Date" <=  ? AND ID_USER = ?

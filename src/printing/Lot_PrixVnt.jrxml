@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
+<!-- 2015-12-31T08:02:53 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="113" pageHeight="56" columnWidth="105" leftMargin="4" rightMargin="4" topMargin="5" bottomMargin="5" uuid="d91b40c3-57e3-45db-b01a-24abfef30e56">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DB_Ahmed"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="IkVOX1NUT0NLIiAsMjAsMjAsOGExZTNkNmMtNTY5My00YzM2LWE0MTQtNDE0Njk2MDhlODJkOyJQ&#xA;Uk9EVUlUIiAsMTQ4LDIwLDZhMTg5OGE5LTQyMTAtNGM1MC1iZTU1LTRhZDg1YTdjNmMyNDs="/>
+	<parameter name="ID_LOT" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT "PRODUIT"."DES" AS PRODUIT_DES,
+	"EN_STOCK"."PU_VNT_DT",
+	"EN_STOCK"."COD_BAR"
+FROM "EN_STOCK"
+	INNER JOIN "PRODUIT" ON 
+	 "EN_STOCK"."ID_PROD" = "PRODUIT"."ID" 
+WHERE 
+	 "EN_STOCK"."ID" = $P{ID_LOT} ]]>
+	</queryString>
+	<field name="PRODUIT_DES" class="java.lang.String"/>
+	<field name="PU_VNT_DT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COD_BAR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="46" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="105" height="34" uuid="de5d30eb-b5ac-4ead-8b82-ad4fbd95bce1">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="David" size="32" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PU_VNT_DT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="31" width="105" height="15" uuid="30b98b08-4bef-421c-b5bf-1609eabb9861">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRODUIT_DES}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

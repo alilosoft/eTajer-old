@@ -1,0 +1,1 @@
+UPDATE CREDIT_CL SET ID_CL = ?, ID_VNT = ?, "DATE" = ?, HEURE = ?, MONTANT = ?, COMMENT = ? WHERE ID = ?

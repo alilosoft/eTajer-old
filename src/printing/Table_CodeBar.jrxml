@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="113" pageHeight="56" columnWidth="105" leftMargin="4" rightMargin="4" topMargin="5" bottomMargin="5" uuid="d91b40c3-57e3-45db-b01a-24abfef30e56">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     V_PRODUIT."Réf/C.B" AS "Réf/C.B",
+     V_PRODUIT."Désignation" AS "Désignation",
+     V_PRODUIT."PU.Vente.Dt" AS "PU.Vente.Dt"
+FROM
+     "ALILO"."V_PRODUIT" V_PRODUIT]]>
+	</queryString>
+	<field name="Réf/C.B" class="java.lang.String"/>
+	<field name="Désignation" class="java.lang.String"/>
+	<field name="PU.Vente.Dt" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="46" splitType="Stretch">
+			<componentElement>
+				<reportElement x="-3" y="0" width="111" height="24" uuid="e98d6d5e-05ad-4f5f-b8c5-4028d5520fd1"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128B" drawText="false" checksumRequired="false" barWidth="0" barHeight="30">
+					<jr:codeExpression><![CDATA[$F{Réf/C.B}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField isBlankWhenNull="false">
+				<reportElement x="0" y="24" width="84" height="12" uuid="d80f65fc-38fb-496b-b0e4-11606537a6c0"/>
+				<box leftPadding="2"/>
+				<textElement>
+					<font fontName="Agency FB"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Réf/C.B}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="51" y="24" width="54" height="12" uuid="de5d30eb-b5ac-4ead-8b82-ad4fbd95bce1"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right">
+					<font fontName="Agency FB"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PU.Vente.Dt}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="35" width="109" height="11" uuid="30b98b08-4bef-421c-b5bf-1609eabb9861"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Désignation}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

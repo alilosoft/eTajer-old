@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="abab5c85-dbef-4287-9dd5-5c561fa4c56e">
+	<property name="ireport.zoom" value="1.4641000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1" fontName="Tahoma" fontSize="9">
+		<pen lineColor="#CC0000"/>
+	</style>
+	<style name="currency" hAlign="Right" fontName="Tahoma" fontSize="9"/>
+	<parameter name="MASTER_VNT" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[556]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     LIGNE_VNT."ID" AS LIGNE_VNT_ID,
+     LIGNE_VNT."ID_VNT" AS LIGNE_VNT_ID_VNT,
+     LIGNE_VNT."PU_VNT" AS LIGNE_VNT_PU_VNT,
+     LIGNE_VNT."QTE" AS LIGNE_VNT_QTE,
+     LIGNE_VNT."TOTAL_LVNT" AS LIGNE_VNT_TOTAL_LVNT,
+     PRODUIT."DES" AS PRODUIT_DES,
+     UNITE."DES" AS UNITE_DES,
+     UNITE."QTE_MORCE" AS UNITE_QTE_MORCE,
+     UNITE."QTE_COLIS" AS UNITE_QTE_COLIS,
+     FAMILLE."TVA" AS FAMILLE_TVA,
+     FAMILLE."SERVICE" AS FAMILLE_SERVICE
+FROM
+     "ALILO"."EN_STOCK" EN_STOCK INNER JOIN "ALILO"."LIGNE_VNT" LIGNE_VNT ON EN_STOCK."ID" = LIGNE_VNT."ID_EN_STK"
+     INNER JOIN "ALILO"."PRODUIT" PRODUIT ON EN_STOCK."ID_PROD" = PRODUIT."ID"
+     INNER JOIN "ALILO"."FAMILLE" FAMILLE ON PRODUIT."ID_FAM" = FAMILLE."ID"
+     INNER JOIN "ALILO"."UNITE" UNITE ON LIGNE_VNT."UNITE_VNT" = UNITE."ID"
+WHERE
+     LIGNE_VNT."ID_VNT" = $P{MASTER_VNT}]]>
+	</queryString>
+	<field name="LIGNE_VNT_ID" class="java.lang.Integer"/>
+	<field name="LIGNE_VNT_ID_VNT" class="java.lang.Integer"/>
+	<field name="LIGNE_VNT_PU_VNT" class="java.math.BigDecimal"/>
+	<field name="LIGNE_VNT_QTE" class="java.lang.Integer"/>
+	<field name="LIGNE_VNT_TOTAL_LVNT" class="java.math.BigDecimal"/>
+	<field name="PRODUIT_DES" class="java.lang.String"/>
+	<field name="UNITE_DES" class="java.lang.String"/>
+	<field name="UNITE_QTE_MORCE" class="java.lang.Integer"/>
+	<field name="UNITE_QTE_COLIS" class="java.lang.Double"/>
+	<field name="FAMILLE_TVA" class="java.lang.Integer"/>
+	<field name="FAMILLE_SERVICE" class="java.lang.Boolean"/>
+	<variable name="montantTva" class="java.lang.Double">
+		<variableExpression><![CDATA[($F{LIGNE_VNT_TOTAL_LVNT}.doubleValue() * $F{FAMILLE_TVA})/100]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalTva" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{montantTva}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="16">
+			<printWhenExpression><![CDATA[false]]></printWhenExpression>
+			<rectangle radius="3">
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="16" backcolor="#FFFFCC" uuid="4915080e-ab34-4e90-8be9-d91c56add26f"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement style="style1" x="450" y="0" width="105" height="16" uuid="56f570b5-4e14-4fe1-95d4-0b0e2a648e11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Square721 BT" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Montant HT (DA)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="style1" x="422" y="0" width="28" height="16" uuid="feefea75-2744-4151-8881-5b3cffffea5f"/>
+				<box>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Square721 BT" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[TVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="style1" x="342" y="0" width="80" height="16" uuid="5b515955-7c88-4057-a6ee-8977accff66c"/>
+				<box>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Square721 BT" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[P.U HT (DA)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="style1" x="297" y="0" width="45" height="16" uuid="59f2f348-050d-4035-b3e4-d161d39bdc5d"/>
+				<box>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Square721 BT" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Qte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="style1" x="32" y="0" width="265" height="16" uuid="e8f8cc00-6ec4-4726-b1c3-bf2e55c8859c"/>
+				<box>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Square721 BT" size="12" isBold="true" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Désignation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="style1" x="0" y="0" width="32" height="16" uuid="69d46265-b6f5-4a12-b039-d8b0bacfddbf"/>
+				<box>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Square721 BT" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField pattern="000">
+				<reportElement style="style1" x="0" y="0" width="32" height="16" uuid="954e4475-2c88-402b-8a76-210a8d4f49da"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Square721 BT" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" x="32" y="0" width="265" height="16" uuid="6009de4b-b605-48f7-8993-81944cd61749"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Microsoft Sans Serif" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRODUIT_DES}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#.###">
+				<reportElement style="style1" x="297" y="0" width="45" height="16" uuid="5c821b29-d021-4221-b3ee-0f24a37d95ea"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Square721 BT" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LIGNE_VNT_QTE}*$F{UNITE_QTE_COLIS}/$F{UNITE_QTE_MORCE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" x="342" y="0" width="80" height="16" uuid="8fab62d9-a49d-4e1f-a2d2-ba4270d87f42"/>
+				<box rightPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Square721 BT" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LIGNE_VNT_PU_VNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="0" width="28" height="16" uuid="ce5e33eb-73c5-4341-80a7-380326829da1"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Square721 BT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAMILLE_TVA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" x="450" y="0" width="105" height="16" uuid="f7204ca8-d50e-495d-9f9e-3419c9b632b4"/>
+				<box rightPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Square721 BT" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LIGNE_VNT_TOTAL_LVNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="17">
+			<printWhenExpression><![CDATA[false]]></printWhenExpression>
+			<textField>
+				<reportElement style="style1" x="400" y="0" width="155" height="16" uuid="d51d6b4a-3d17-4f21-8f5d-5a87a8529cb4"/>
+				<box rightPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Square721 BT" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total TVA: "+$V{totalTva}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

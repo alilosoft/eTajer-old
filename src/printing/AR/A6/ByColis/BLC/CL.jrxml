@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="297" pageHeight="836" columnWidth="269" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="a040ebde-b789-4b63-83b7-934e8946abde">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1" fontName="Tahoma" fontSize="9">
+		<pen lineColor="#CC0000"/>
+	</style>
+	<style name="currency" hAlign="Right" pattern="# ##0.00" fontName="Tahoma" fontSize="9"/>
+	<parameter name="ID_VNT" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[57]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     VENTE."ID" AS VENTE_ID,
+     VENTE."NUM" AS VENTE_NUM,
+     VENTE."DATE" AS VENTE_DATE,
+     VENTE."HEURE" AS VENTE_HEURE,
+     VENTE."TOTAL" AS VENTE_TOTAL,
+     LIGNE_VNT."ID" AS LIGNE_VNT_ID,
+     LIGNE_VNT."PU_VNT" AS LIGNE_VNT_PU_VNT,
+     LIGNE_VNT."QTE" AS LIGNE_VNT_QTE,
+     LIGNE_VNT."QTE_UNIT" AS LIGNE_VNT_QTE_UNIT,
+     LIGNE_VNT."TOTAL_LVNT" AS LIGNE_VNT_TOTAL_LVNT,
+     PRODUIT."COD_BAR" AS PRODUIT_COD_BAR,
+     PRODUIT."DES" AS PRODUIT_DES,
+     PRODUIT."PU_VENTE_GR" AS PRODUIT_PU_VENTE_GR,
+     PRODUIT."PU_VENTE_DT" AS PRODUIT_PU_VENTE_DT,
+     CLIENT."NOM" AS CLIENT_NOM,
+     CLIENT."ADR" AS CLIENT_ADR,
+     CLIENT."DETTE" AS CLIENT_DETTE,
+     REGLEMENT_CL."MONTANT" AS REGLEMENT_CL_MONTANT,
+     MODE_PAYE."DES" AS MODE_PAYE_DES,
+     EN_STOCK."ID_DEPOT" AS EN_STOCK_ID_DEPOT,
+     VENTE."ID_TYPE" AS VENTE_ID_TYPE,
+     VENTE."ID_CL" AS VENTE_ID_CL,
+     UNITE."QTE_MORCE" AS UNITE_QTE_MORCE,
+     UNITE."QTE_COLIS" AS UNITE_QTE_COLIS,
+     UNITE."DES" AS UNITE_DES
+FROM
+     "ALILO"."VENTE" VENTE INNER JOIN "ALILO"."LIGNE_VNT" LIGNE_VNT ON VENTE."ID" = LIGNE_VNT."ID_VNT"
+     INNER JOIN "ALILO"."EN_STOCK" EN_STOCK ON LIGNE_VNT."ID_EN_STK" = EN_STOCK."ID"
+     INNER JOIN "ALILO"."UNITE" UNITE ON LIGNE_VNT."UNITE_VNT" = UNITE."ID"
+     INNER JOIN "ALILO"."PRODUIT" PRODUIT ON EN_STOCK."ID_PROD" = PRODUIT."ID"
+     INNER JOIN "ALILO"."CLIENT" CLIENT ON VENTE."ID_CL" = CLIENT."ID"
+     LEFT OUTER JOIN "ALILO"."REGLEMENT_CL" REGLEMENT_CL ON VENTE."ID" = REGLEMENT_CL."ID_VNT"
+     AND CLIENT."ID" = REGLEMENT_CL."ID_CL"
+     INNER JOIN "ALILO"."MODE_PAYE" MODE_PAYE ON REGLEMENT_CL."MODE_PAY" = MODE_PAYE."ID"
+WHERE
+     VENTE."ID" = $P{ID_VNT}]]>
+	</queryString>
+	<field name="VENTE_ID" class="java.lang.Integer"/>
+	<field name="VENTE_NUM" class="java.lang.Integer"/>
+	<field name="VENTE_DATE" class="java.sql.Date"/>
+	<field name="VENTE_HEURE" class="java.sql.Time"/>
+	<field name="VENTE_TOTAL" class="java.math.BigDecimal"/>
+	<field name="LIGNE_VNT_ID" class="java.lang.Integer"/>
+	<field name="LIGNE_VNT_PU_VNT" class="java.math.BigDecimal"/>
+	<field name="LIGNE_VNT_QTE" class="java.lang.Integer"/>
+	<field name="LIGNE_VNT_QTE_UNIT" class="java.lang.Double"/>
+	<field name="LIGNE_VNT_TOTAL_LVNT" class="java.math.BigDecimal"/>
+	<field name="PRODUIT_COD_BAR" class="java.lang.String"/>
+	<field name="PRODUIT_DES" class="java.lang.String"/>
+	<field name="PRODUIT_PU_VENTE_GR" class="java.math.BigDecimal"/>
+	<field name="PRODUIT_PU_VENTE_DT" class="java.math.BigDecimal"/>
+	<field name="CLIENT_NOM" class="java.lang.String"/>
+	<field name="CLIENT_ADR" class="java.lang.String"/>
+	<field name="CLIENT_DETTE" class="java.math.BigDecimal"/>
+	<field name="REGLEMENT_CL_MONTANT" class="java.math.BigDecimal"/>
+	<field name="MODE_PAYE_DES" class="java.lang.String"/>
+	<field name="EN_STOCK_ID_DEPOT" class="java.lang.Integer"/>
+	<field name="VENTE_ID_TYPE" class="java.lang.Integer"/>
+	<field name="VENTE_ID_CL" class="java.lang.Integer"/>
+	<field name="UNITE_QTE_MORCE" class="java.lang.Integer"/>
+	<field name="UNITE_QTE_COLIS" class="java.lang.Double"/>
+	<field name="UNITE_DES" class="java.lang.String"/>
+	<variable name="client" class="java.lang.String">
+		<variableExpression><![CDATA[($F{VENTE_ID_CL} == null) ? "غير مسجل" : $F{CLIENT_NOM}]]></variableExpression>
+	</variable>
+	<variable name="date" class="java.lang.String">
+		<variableExpression><![CDATA[$F{VENTE_DATE}.getYear()+"/"+$F{VENTE_DATE}.getMonth()+"/"+$F{VENTE_DATE}.getDay()]]></variableExpression>
+	</variable>
+	<variable name="reglement" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{REGLEMENT_CL_MONTANT} == null ? BigDecimal.ZERO : $F{REGLEMENT_CL_MONTANT}]]></variableExpression>
+	</variable>
+	<group name="vente" isStartNewPage="true">
+		<groupExpression><![CDATA[]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<rectangle radius="3">
+					<reportElement mode="Opaque" x="0" y="17" width="269" height="13" backcolor="#FFFFCC" uuid="cab149ad-71ef-4b72-b30c-3e0052924041"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement style="style1" x="255" y="0" width="14" height="14" uuid="eb9442dd-8d60-4f46-88de-ccf882774499"/>
+					<box rightPadding="1"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[يوم:]]></text>
+				</staticText>
+				<textField pattern="yyyy/MM/dd">
+					<reportElement style="style1" x="210" y="0" width="45" height="14" uuid="25b5a64e-40f2-4d5a-8da0-192ba40f5d24"/>
+					<box rightPadding="0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Agency FB" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{VENTE_DATE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="style1" x="184" y="0" width="26" height="14" uuid="ec00de2a-0be2-4e3f-96eb-1f10eabbbb07"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[الساعة:]]></text>
+				</staticText>
+				<textField pattern="HH:mm">
+					<reportElement style="style1" x="159" y="0" width="25" height="14" uuid="fbb910f1-011b-44d5-8e00-8bb7d0a555f0"/>
+					<box rightPadding="1"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Agency FB" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{VENTE_HEURE}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement style="style1" x="0" y="0" width="159" height="14" uuid="e9d7159e-ea23-4501-806c-43c7866a46e7"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["الزبون: " + $V{client}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="style1" x="157" y="17" width="112" height="13" uuid="ce6b7d9f-5a1d-4fc9-96e8-d05867a2e00d"/>
+					<box>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="KacstTitle" size="9" isBold="false" isItalic="false" isStrikeThrough="false"/>
+					</textElement>
+					<text><![CDATA[السلعـــــــــة]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="style1" x="110" y="17" width="47" height="13" uuid="6c1a73cc-5c34-4b20-be0d-ff0fba234aaa"/>
+					<box>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="KacstTitle" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[الكمية]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="style1" x="60" y="17" width="50" height="13" uuid="649c2bf7-64e8-4c62-9640-e9be7bec2aaa"/>
+					<box>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="KacstTitle" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[السعر]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="style1" x="0" y="17" width="60" height="13" uuid="969c9b72-36e4-4e54-8fe9-81a73697a99a"/>
+					<box>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="KacstTitle" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[المجموع]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="53">
+				<rectangle radius="3">
+					<reportElement mode="Opaque" x="0" y="0" width="111" height="53" forecolor="#CCCCFF" backcolor="#FFFFCC" uuid="dc078667-942e-4b97-a056-62506b11fcd4"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement style="style1" x="60" y="0" width="50" height="13" uuid="db962cea-2977-4823-adca-6f99479fad02"/>
+					<box>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Microsoft Sans Serif" size="10" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[المجموع.الكلي:]]></text>
+				</staticText>
+				<textField pattern="#,##0.00" isBlankWhenNull="false">
+					<reportElement style="currency" mode="Transparent" x="1" y="0" width="59" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="b69b2760-8cbe-4c16-a38e-573ea5946147"/>
+					<box leftPadding="0" rightPadding="2"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+						<font fontName="Agency FB" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{VENTE_TOTAL}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="false">
+					<reportElement style="currency" mode="Transparent" x="1" y="13" width="59" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="39b2691b-d3cc-44bd-b201-333f5af386c5"/>
+					<box leftPadding="0" rightPadding="2">
+						<leftPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+						<font fontName="Agency FB" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CLIENT_DETTE}.subtract($F{VENTE_TOTAL}.subtract($V{reglement}))]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="style1" x="60" y="13" width="52" height="13" uuid="b2f44728-6d4a-4b1e-834a-f0c201e8310e"/>
+					<box rightPadding="1">
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Microsoft Sans Serif" size="10" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[الرصيد السابق:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="style1" x="60" y="26" width="50" height="13" uuid="e6a571b3-851f-4a15-a51f-0e2314fdb94d"/>
+					<box>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Microsoft Sans Serif" size="10" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[المبلغ.المدفـوع:]]></text>
+				</staticText>
+				<textField pattern="#,##0.00">
+					<reportElement style="currency" x="1" y="26" width="59" height="13" uuid="937e1756-be6a-400e-9507-c1965303b0e4"/>
+					<box rightPadding="2"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Agency FB" size="10" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{reglement}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="style1" x="60" y="39" width="52" height="13" uuid="1d271869-94e6-494b-aa7a-74b15c900dd8"/>
+					<box rightPadding="1">
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Microsoft Sans Serif" size="10" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[الرصيد الجديـد:]]></text>
+				</staticText>
+				<textField pattern="#,##0.00" isBlankWhenNull="false">
+					<reportElement style="currency" mode="Transparent" x="1" y="39" width="59" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="f19cbf90-8f98-429c-b7cd-8b1693fafef1"/>
+					<box leftPadding="0" rightPadding="2">
+						<leftPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+						<font fontName="Agency FB" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CLIENT_DETTE}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement style="style1" x="150" y="0" width="118" height="15" uuid="0c0ee2d7-413b-413e-a044-d64b74939522"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="KacstArt" size="13" isBold="true" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[وصــــــــل تسليم]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="style1" x="22" y="0" width="17" height="15" uuid="3e1de2fe-6d36-4eed-9ef0-1d2839748e6e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Microsoft Sans Serif" size="12" isBold="false" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[رقم:]]></text>
+			</staticText>
+			<textField pattern="000">
+				<reportElement style="style1" x="0" y="0" width="22" height="15" uuid="294d5379-bbc5-4cb6-b9eb-44d7c239a955"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Agency FB" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VENTE_NUM}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="14" width="269" height="1" uuid="9a9c63e0-53fd-4877-bffa-96c02119e3db"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="13">
+			<rectangle radius="2">
+				<reportElement mode="Transparent" x="0" y="0" width="269" height="13" uuid="5477b6f1-77bf-4504-8f19-a038ed88f3f2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement style="style1" x="157" y="0" width="112" height="13" uuid="eb6e0cdd-e296-4d02-977f-31bb18c6cb7f"/>
+				<box rightPadding="2">
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Microsoft Sans Serif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRODUIT_DES}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="currency" x="60" y="0" width="50" height="13" uuid="e72e2c75-e1f8-46ef-893b-5df3145a5cc9"/>
+				<box rightPadding="2">
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Agency FB" size="10" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LIGNE_VNT_PU_VNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="currency" x="0" y="0" width="60" height="13" uuid="6461c05d-b874-4547-bc60-a0e53cba076b"/>
+				<box rightPadding="2">
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Agency FB" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LIGNE_VNT_TOTAL_LVNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" x="141" y="0" width="16" height="13" uuid="f55b88a7-4ae7-4ee0-b8c0-e769a222d7ab"/>
+				<box>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None">
+					<font fontName="Agency FB" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LIGNE_VNT_QTE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.###">
+				<reportElement style="style1" x="110" y="0" width="23" height="13" uuid="ecba5c99-f627-425f-811e-4a406609ed9e"/>
+				<box>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Agency FB" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNITE_QTE_COLIS}/$F{UNITE_QTE_MORCE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="style1" x="133" y="0" width="8" height="13" uuid="0ab0b174-053f-46a6-84a7-10806f7089a9"/>
+				<box rightPadding="1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="11" splitType="Stretch">
+			<staticText>
+				<reportElement style="style1" x="0" y="0" width="17" height="11" uuid="097a9549-e039-4115-87b8-a656b144c833"/>
+				<textElement>
+					<font fontName="Agency FB" size="8" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Imp le:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy  à: HH:mm">
+				<reportElement style="style1" stretchType="RelativeToTallestObject" x="16" y="0" width="97" height="11" uuid="d97ecc86-a500-4220-965e-71bbe0ab00ea"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Agency FB" size="8" isBold="false" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="style1" x="250" y="0" width="7" height="11" uuid="cabfa431-ad03-4fb4-bfa6-bf742f8619bb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Agency FB" size="8" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="style1" x="256" y="0" width="5" height="11" uuid="b623cc37-8b33-49b3-9d6a-7e6badbe222d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Agency FB" size="8"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="00" isBlankWhenNull="false">
+				<reportElement style="style1" x="260" y="0" width="8" height="11" uuid="14b84b58-57b9-4ae3-a185-7274f1ad1362"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Agency FB" size="8" isBold="false" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="269" height="1" uuid="7bc95a67-ca75-45e2-b256-f3d82ec1bf57"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

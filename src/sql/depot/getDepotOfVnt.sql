@@ -1,0 +1,1 @@
+SELECT ID, "Adresse" FROM V_DEPOT WHERE "De.Vente" = TRUE;

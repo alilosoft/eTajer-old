@@ -1,0 +1,1 @@
+INSERT INTO ACHAT (ID_FR, NUM, "DATE", HEURE) VALUES (?, ?, ?, ?)

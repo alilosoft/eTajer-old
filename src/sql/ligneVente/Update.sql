@@ -1,0 +1,1 @@
+UPDATE LIGNE_VNT SET ID_VNT = ?, ID_EN_STK = ?, PU_VNT = ?, PU_ACH = ?, QTE = ?, UNITE_VNT = ?, QTE_UNIT = ?, TOTAL_LVNT = ? WHERE ID = ?; 

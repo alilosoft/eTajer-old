@@ -1,0 +1,1 @@
+UPDATE CREDIT_FR SET ID_FR = ?, ID_ACH = ?, "DATE" = ?, HEURE = ?, MONTANT = ?, COMMENT = ? WHERE ID = ?

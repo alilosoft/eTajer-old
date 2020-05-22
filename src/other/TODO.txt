@@ -1,0 +1,12 @@
+24/11/2012
+-> Create a unique data base and create in it all views for different versions 
+(Std_Ed, Details_Ed, Gros_Ed, MC_Ed).
+-> Create different liste panels for all versions. 
+-> Add Support for default values to "MajPanel". 
+
+26/11/2012
+-> Add a filter to "ListeVentesPanel" in the status panel. The filter must include:
+            - tody sales option.
+            - all sales option.
+            - a fixed date.
+            - a period.
