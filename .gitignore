@@ -4,4 +4,5 @@
 /log/
 desktop.ini
 *.dll
+/nbproject/
 
