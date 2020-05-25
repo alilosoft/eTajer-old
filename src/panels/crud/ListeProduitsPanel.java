@@ -15,7 +15,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import myComponents.MyJFrame;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.ProduitDAO;
 import dbTools.DBManager;
 import java.awt.event.ActionEvent;
@@ -30,7 +30,7 @@ import printing.PrintingTools;
  *
  * @author alilo
  */
-public class ListeProduitsPanel extends ResultSet2Table_Panel<Produit, ProduitDAO> {
+public class ListeProduitsPanel extends RSTablePanel<Produit, ProduitDAO> {
 
     {
         setPreferredSize(new Dimension(600, 400));

@@ -13,7 +13,7 @@ package panels.crud;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import myComponents.MyJFrame;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.DepotDAO;
 import entities.Depot;
 import java.awt.Dimension;
@@ -24,7 +24,7 @@ import panels.maj.MajDepotPanel;
  *
  * @author alilo
  */
-public class ListeDepotsPanel extends ResultSet2Table_Panel<Depot, DepotDAO> {
+public class ListeDepotsPanel extends RSTablePanel<Depot, DepotDAO> {
     {
         setPreferredSize(new Dimension(550, 450));
         setMajPanel(new MajDepotPanel(this));

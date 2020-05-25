@@ -7,7 +7,7 @@ package panels.crud;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import myComponents.MyJFrame;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.FournissDAO;
 import entities.Fournisseur;
 import java.awt.Dimension;
@@ -17,7 +17,7 @@ import panels.maj.MajFournisseurPanel;
  *
  * @author alilo
  */
-public class ListeFournissPanel extends ResultSet2Table_Panel<Fournisseur, FournissDAO> {
+public class ListeFournissPanel extends RSTablePanel<Fournisseur, FournissDAO> {
 
 
     {

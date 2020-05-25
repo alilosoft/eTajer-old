@@ -15,7 +15,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.sql.ResultSet;
 import myComponents.MyJFrame;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.LotEnStockDAO;
 import dbTools.DBManager;
 import dialogs.MyJDialog;
@@ -38,7 +38,7 @@ import printing.PrintingTools;
  *
  * @author alilo
  */
-public class ListeLotsEnStockPanel extends ResultSet2Table_Panel<EnStock, LotEnStockDAO> {
+public class ListeLotsEnStockPanel extends RSTablePanel<EnStock, LotEnStockDAO> {
 
     {
         setPreferredSize(new Dimension(750, 400));

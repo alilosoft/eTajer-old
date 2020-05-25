@@ -14,7 +14,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import myComponents.MyJFrame;
 import myModels.ResultSet2TableModel;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.ReglementFrDAO;
 import entities.ReglementFr;
 import java.awt.Dimension;
@@ -24,7 +24,7 @@ import panels.maj.MajReglementFrPanel;
  *
  * @author alilo
  */
-public class ListeReglementsFrPanel extends ResultSet2Table_Panel<ReglementFr, ReglementFrDAO> {
+public class ListeReglementsFrPanel extends RSTablePanel<ReglementFr, ReglementFrDAO> {
     {
         setPreferredSize(new Dimension(750, 450));
         setMajPanel(new MajReglementFrPanel(this));

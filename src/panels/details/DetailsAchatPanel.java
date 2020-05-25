@@ -17,7 +17,7 @@ import java.awt.Container;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import myComponents.MyJFrame;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import panels.views.MontantPanel;
 import entities.Achat;
 import entities.LigneAch;
@@ -30,7 +30,7 @@ import panels.maj.MajLigneAchPanel;
  *
  * @author alilo
  */
-public class DetailsAchatPanel extends ResultSet2Table_Panel<LigneAch, LigneAchatDAO> {
+public class DetailsAchatPanel extends RSTablePanel<LigneAch, LigneAchatDAO> {
 
     {
         setPreferredSize(new Dimension(600, 400));

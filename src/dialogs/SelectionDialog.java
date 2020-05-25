@@ -26,7 +26,7 @@ import javax.swing.Action;
 import javax.swing.JComponent;
 import panels.CRUDPanel;
 import panels.MasterDetailsPanel;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 
 /**
  *
@@ -53,8 +53,8 @@ public class SelectionDialog extends dialogs.MyJDialog {
         selListPanel.add(selListPanel.operPanel, BorderLayout.SOUTH);
         selListPanel.reload();
         // config behavior
-        if (selListPanel instanceof ResultSet2Table_Panel) {
-            ResultSet2Table_Panel rs2TablPnl = (ResultSet2Table_Panel) selListPanel;
+        if (selListPanel instanceof RSTablePanel) {
+            RSTablePanel rs2TablPnl = (RSTablePanel) selListPanel;
             if (defaultSel != null) {
                 rs2TablPnl.selectEntity(defaultSel);
             }

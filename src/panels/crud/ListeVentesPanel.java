@@ -21,7 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import myComponents.MyJFrame;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.VenteDAO;
 import dialogs.LoginDialog;
 import entities.AppUser;
@@ -34,7 +34,7 @@ import tools.DateTools;
  *
  * @author alilo
  */
-public class ListeVentesPanel extends ResultSet2Table_Panel<Vente, VenteDAO> {
+public class ListeVentesPanel extends RSTablePanel<Vente, VenteDAO> {
 
     {
         setPreferredSize(new Dimension(700, 400));

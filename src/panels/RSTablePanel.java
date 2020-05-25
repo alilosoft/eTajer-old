@@ -14,12 +14,12 @@ import myModels.FilterColsComboBoxModel;
 import myModels.ResultSet2TableModel;
 import tools.ExceptionReporting;
 
-public abstract class ResultSet2Table_Panel<Entity extends EntityClass, DAO extends dao.TableDAO<Entity, ?>> extends ResultSet_Panel<Entity, DAO, ResultSet2TableModel> {
+public abstract class RSTablePanel<Entity extends EntityClass, DAO extends dao.TableDAO<Entity, ?>> extends ResultSet_Panel<Entity, DAO, ResultSet2TableModel> {
 
     public final String VISIBLE_COLS = this.getClass().getName() + "_VisibleCols";
 
     protected MyJTable table;
-    private final RS2TablePanelSettings settingsPanel = new RS2TablePanelSettings(this);
+    private final RSTablePanelSettings settingsPanel = new RSTablePanelSettings(this);
     ;
     private String[] filterCols;
     private String[] visibleCols;
@@ -30,11 +30,11 @@ public abstract class ResultSet2Table_Panel<Entity extends EntityClass, DAO exte
      *
      * @param owner
      */
-    public ResultSet2Table_Panel(Container owner) {
+    public RSTablePanel(Container owner) {
         this(owner, false);
     }
 
-    public ResultSet2Table_Panel(Container owner, boolean checkable) {
+    public RSTablePanel(Container owner, boolean checkable) {
         super(owner);
         model = new ResultSet2TableModel(getResultSet(), checkable);
 
@@ -57,12 +57,8 @@ public abstract class ResultSet2Table_Panel<Entity extends EntityClass, DAO exte
             }
         };
 
-        model.addTableModelListener(new TableModelListener() {
-
-            @Override
-            public void tableChanged(TableModelEvent e) {
-                doOnTableModelChanged();
-            }
+        model.addTableModelListener((TableModelEvent e) -> {
+            doOnTableModelChanged();
         });
 
         table.setFillsViewportHeight(true);
@@ -329,7 +325,7 @@ public abstract class ResultSet2Table_Panel<Entity extends EntityClass, DAO exte
      *
      * @return this panel with the customized table.
      */
-    public abstract ResultSet2Table_Panel initTableView();
+    public abstract RSTablePanel initTableView();
 
     /**
      * Add keys and mouse listeners to the table.

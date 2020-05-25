@@ -14,7 +14,7 @@ import java.beans.PropertyChangeListener;
 import javax.swing.*;
 import myComponents.MyJPanel;
 import panels.ResultSet_Panel;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.TableDAO;
 import dialogs.MajDialog;
 import dialogs.MyJDialog;
@@ -503,8 +503,8 @@ public abstract class MajPanel<Entity extends EntityClass, DAO extends TableDAO<
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getSource() instanceof ResultSet2Table_Panel) {
-            ResultSet2Table_Panel panel = (ResultSet2Table_Panel) evt.getSource();
+        if (evt.getSource() instanceof RSTablePanel) {
+            RSTablePanel panel = (RSTablePanel) evt.getSource();
             if (evt.getPropertyName().equalsIgnoreCase(ResultSet_Panel.ENTITY_TO_VIEW_PROPERTY)) {
                 // Call this method in every case, even if no selection is made; (sel_row < 0).
                 viewSelEntity(panel);
@@ -524,7 +524,7 @@ public abstract class MajPanel<Entity extends EntityClass, DAO extends TableDAO<
      *
      * @param listePanel
      */
-    public void viewSelEntity(ResultSet2Table_Panel listePanel) {
+    public void viewSelEntity(RSTablePanel listePanel) {
 
     }
 

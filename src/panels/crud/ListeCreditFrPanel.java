@@ -14,7 +14,7 @@ import dao.CreditFrDAO;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import myComponents.MyJFrame;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import entities.CreditFr;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
@@ -24,7 +24,7 @@ import panels.maj.MajCreditFrPanel;
  *
  * @author alilo
  */
-public class ListeCreditFrPanel extends ResultSet2Table_Panel<CreditFr, CreditFrDAO> {
+public class ListeCreditFrPanel extends RSTablePanel<CreditFr, CreditFrDAO> {
     {
         setPreferredSize(new Dimension(750, 450));
         setMajPanel(new MajCreditFrPanel(this));

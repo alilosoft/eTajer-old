@@ -23,7 +23,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import myComponents.MyJFrame;
 import myComponents.MyJTable;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import entities.Achat;
 import myComponents.MyJComboBox;
 import panels.maj.MajAchatPanel;
@@ -33,7 +33,7 @@ import tools.DateTools;
  *
  * @author alilo
  */
-public class ListeAchatsPanel extends ResultSet2Table_Panel<Achat, AchatDAO> {
+public class ListeAchatsPanel extends RSTablePanel<Achat, AchatDAO> {
     {
         setPreferredSize(new Dimension(600, 400));
         setMajPanel(new MajAchatPanel(this));

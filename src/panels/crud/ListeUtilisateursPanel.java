@@ -9,7 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import javax.swing.JOptionPane;
 import myComponents.MyJFrame;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.UserDAO;
 import entities.AppUser;
 import java.awt.Dimension;
@@ -19,7 +19,7 @@ import panels.maj.MajUtilisateurPanel;
  *
  * @author alilo
  */
-public class ListeUtilisateursPanel extends ResultSet2Table_Panel<AppUser, UserDAO> {
+public class ListeUtilisateursPanel extends RSTablePanel<AppUser, UserDAO> {
 
     {
         setPreferredSize(new Dimension(550, 450));

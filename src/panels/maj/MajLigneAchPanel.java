@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import panels.CRUDPanel;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import panels.crud.ListeDepotsPanel;
 import panels.crud.ListeProduitsPanel;
 import printing.PrintingTools;
@@ -303,7 +303,7 @@ public class MajLigneAchPanel extends MajPanel<LigneAch, LigneAchatDAO> {
     }
 
     @Override
-    public void viewSelEntity(ResultSet2Table_Panel listePanel) {
+    public void viewSelEntity(RSTablePanel listePanel) {
         if (listePanel instanceof ListeProduitsPanel) {
             if (listePanel.getSelectedEntity().getId() > 0) {
                 setProduit((Produit) listePanel.getSelectedEntity());

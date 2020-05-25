@@ -15,7 +15,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import myComponents.MyJFrame;
 import myModels.ResultSet2TableModel;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.UniteDAO;
 import java.awt.Dimension;
 import panels.maj.MajUnitePanel;
@@ -24,7 +24,7 @@ import panels.maj.MajUnitePanel;
  *
  * @author alilo
  */
-public class ListeUnitesPanel extends ResultSet2Table_Panel<Unite, UniteDAO> {
+public class ListeUnitesPanel extends RSTablePanel<Unite, UniteDAO> {
     {
         setPreferredSize(new Dimension(550, 450));
         setMajPanel(new MajUnitePanel(this));

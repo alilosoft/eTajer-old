@@ -7,7 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.sql.ResultSet;
 import myComponents.MyJFrame;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.LigneVenteDAO;
 import entities.EnStock;
 import entities.LigneVnt;
@@ -32,7 +32,7 @@ import panels.maj.MajLigneVentePanel;
  *
  * @author alilo
  */
-public class DetailsVentePanel extends ResultSet2Table_Panel<LigneVnt, LigneVenteDAO> {
+public class DetailsVentePanel extends RSTablePanel<LigneVnt, LigneVenteDAO> {
 
     {
         setPreferredSize(new Dimension(600, 400));

@@ -31,7 +31,7 @@ import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import panels.CRUDPanel;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import panels.ResultSet_Panel;
 import tools.ExceptionReporting;
 import tools.MessageReporting;
@@ -379,7 +379,7 @@ public class MajProduitPanel extends MajPanel<Produit, ProduitDAO> {
     }
 
     @Override
-    public void viewSelEntity(ResultSet2Table_Panel listePanel) {
+    public void viewSelEntity(RSTablePanel listePanel) {
 
         if (listePanel instanceof ListeFamillesPanel) {
             if (listePanel.getSelectedEntity().getId() > 0) {

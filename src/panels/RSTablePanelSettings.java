@@ -21,9 +21,9 @@ import tools.ExceptionReporting;
  *
  * @author alilo
  */
-public class RS2TablePanelSettings extends SettingsPanel {
+public class RSTablePanelSettings extends SettingsPanel {
 
-    private final ResultSet2Table_Panel tablePanel;
+    private final RSTablePanel tablePanel;
     private MyJTableCols2ListModel filterColsListModel;
     private MyJTableCols2ListModel visibleColsListModel;
     private MyJTableCols2ListModel printColsListModel;
@@ -37,7 +37,7 @@ public class RS2TablePanelSettings extends SettingsPanel {
      *
      * @param panel
      */
-    public RS2TablePanelSettings(ResultSet2Table_Panel panel) {
+    public RSTablePanelSettings(RSTablePanel panel) {
         super(panel);
         initComponents();
         initSettingsPanel(settingsTabbedPane);
@@ -275,7 +275,6 @@ public class RS2TablePanelSettings extends SettingsPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         viewTab.add(jLabel4, gridBagConstraints);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jButton2.setText("Police ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,7 +330,6 @@ public class RS2TablePanelSettings extends SettingsPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         printTab.add(printTableBtn, gridBagConstraints);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jButton1.setText("Police d'impression");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -353,7 +351,6 @@ public class RS2TablePanelSettings extends SettingsPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         printTab.add(jLabel3, gridBagConstraints);
 
-        printTitleField.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         printTitleField.setText("Aucun Titre!");
         printTitleField.setMinimumSize(new java.awt.Dimension(4, 25));
         printTitleField.setPreferredSize(new java.awt.Dimension(125, 25));

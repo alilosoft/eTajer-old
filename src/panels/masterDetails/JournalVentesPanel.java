@@ -8,7 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import myComponents.MyJFrame;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.LigneVenteDAO;
 import entities.EntityClass;
 import entities.LigneVnt;
@@ -22,7 +22,7 @@ import tools.DateTools;
  *
  * @author alilo
  */
-public class JournalVentesPanel extends ResultSet2Table_Panel<LigneVnt, LigneVenteDAO> {
+public class JournalVentesPanel extends RSTablePanel<LigneVnt, LigneVenteDAO> {
 
     {
         setPreferredSize(new Dimension(800, 550));

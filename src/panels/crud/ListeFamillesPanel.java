@@ -9,7 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import myComponents.MyJFrame;
 import myModels.ResultSet2TableModel;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.FamilleDAO;
 import java.awt.Dimension;
 import panels.maj.MajFamillePanel;
@@ -18,7 +18,7 @@ import panels.maj.MajFamillePanel;
  *
  * @author alilo
  */
-public class ListeFamillesPanel extends ResultSet2Table_Panel<Famille, FamilleDAO> {
+public class ListeFamillesPanel extends RSTablePanel<Famille, FamilleDAO> {
     {
         setPreferredSize(new Dimension(300, 400));
         setMajPanel(new MajFamillePanel(this));

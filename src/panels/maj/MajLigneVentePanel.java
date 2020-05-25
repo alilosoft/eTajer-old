@@ -20,7 +20,7 @@ import dao.QuantifierDAO;
 import java.awt.Dimension;
 import java.util.Date;
 import panels.CRUDPanel;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import panels.crud.ListeLotsAVendrePanel;
 import panels.crud.ListeProduitsPanel;
 import tools.DateTools;
@@ -129,7 +129,7 @@ public class MajLigneVentePanel extends MajPanel<LigneVnt, LigneVenteDAO> {
     }
 
     @Override
-    public void viewSelEntity(ResultSet2Table_Panel listePanel) {
+    public void viewSelEntity(RSTablePanel listePanel) {
         if (listePanel instanceof ListeLotsAVendrePanel) {
             if (listePanel.getSelectedEntity().getId() > 0) {
                 setLotEnStk((EnStock) listePanel.getSelectedEntity());

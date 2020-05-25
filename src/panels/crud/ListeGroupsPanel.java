@@ -7,7 +7,7 @@ package panels.crud;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import myComponents.MyJFrame;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.UGroupDAO;
 import entities.UserGp;
 import java.awt.Dimension;
@@ -17,7 +17,7 @@ import panels.maj.MajGroupePanel;
  *
  * @author alilo
  */
-public class ListeGroupsPanel extends ResultSet2Table_Panel<UserGp, UGroupDAO> {
+public class ListeGroupsPanel extends RSTablePanel<UserGp, UGroupDAO> {
     {
         setPreferredSize(new Dimension(550, 450));
         setMajPanel(new MajGroupePanel(this));

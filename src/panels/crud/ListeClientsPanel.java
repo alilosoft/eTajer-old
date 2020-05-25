@@ -8,7 +8,7 @@ import entities.Client;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import myComponents.MyJFrame;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import dao.ClientDAO;
 import java.awt.Dimension;
 import panels.maj.MajClientPanel;
@@ -16,7 +16,7 @@ import panels.maj.MajClientPanel;
 /**
  * @author alilo
  */
-public class ListeClientsPanel extends ResultSet2Table_Panel<Client, ClientDAO> {
+public class ListeClientsPanel extends RSTablePanel<Client, ClientDAO> {
 
 
     {

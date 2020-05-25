@@ -33,7 +33,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
 import panels.CRUDPanel;
-import panels.ResultSet2Table_Panel;
+import panels.RSTablePanel;
 import panels.ResultSet_Panel;
 import panels.crud.ListeDepotsPanel;
 import panels.crud.ListeProduitsPanel;
@@ -144,7 +144,7 @@ public class MajLotEnStockPanel extends MajPanel<EnStock, LotEnStockDAO> {
     }
 
     @Override
-    public void viewSelEntity(ResultSet2Table_Panel listePanel) {
+    public void viewSelEntity(RSTablePanel listePanel) {
         if (listePanel instanceof ListeProduitsPanel) {
             if (listePanel.getSelectedEntity().getId() > 0) {
                 setProduit(listeProds.getSelectedEntity());
