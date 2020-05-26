@@ -136,15 +136,6 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
         
     }
 
-    /**
-     * Reload the data model from the result set.
-     */
-    public void reload() {
-        if (resultSet != null) {
-            loadResultSet(resultSet);
-        }
-    }
-
     @Override
     public void addSelectedRow(int modelRow) {
         selectedRows.add(modelRow);
