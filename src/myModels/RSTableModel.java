@@ -29,11 +29,11 @@ public class RSTableModel extends AbstractTableModel implements ResultSet2DataMo
     private List<Class> colClasses = null;
     private int colCount = 0;
     
-    private List<List<Object>> rows = Collections.synchronizedList(new ArrayList<>());
+    private List<List<Object>> rows;
     
     
     //private int selectedRow = -1;
-    private final List<Integer> selectedRows = Collections.synchronizedList(new ArrayList<Integer>());
+    private final List<Integer> selectedRows = Collections.synchronizedList(new ArrayList<>());
     
     private boolean checkable = false;
     private final Map<Integer, Boolean> checkedIDs = new HashMap<>();
@@ -77,12 +77,12 @@ public class RSTableModel extends AbstractTableModel implements ResultSet2DataMo
             }
         }
 
-        rows = Collections.synchronizedList(new ArrayList<List<Object>>());
+        rows = Collections.synchronizedList(new ArrayList<>());
         List<Object> currentRow;
         try {
             resultSet.beforeFirst();
             while (resultSet.next()) {
-                currentRow = Collections.synchronizedList(new ArrayList<Object>());
+                currentRow = Collections.synchronizedList(new ArrayList<>());
                 for (int i = 1; i <= colCount; i++) {
                     currentRow.add(resultSet.getObject(i));
                 }
@@ -145,7 +145,7 @@ public class RSTableModel extends AbstractTableModel implements ResultSet2DataMo
         return selectedRows;
     }
 
-    private final List<Integer> selectedIDs = Collections.synchronizedList(new ArrayList<Integer>());
+    private final List<Integer> selectedIDs = Collections.synchronizedList(new ArrayList<>());
 
     @Override
     public List<Integer> getSelectedIDs() {
@@ -179,7 +179,7 @@ public class RSTableModel extends AbstractTableModel implements ResultSet2DataMo
 
     //return the column names at the begining
     public List<String> getColNames() {
-        List<String> cNames = Collections.synchronizedList(new ArrayList<String>());
+        List<String> cNames = Collections.synchronizedList(new ArrayList<>());
 
         for (int i = 1; i <= colCount; i++) {
             try {
@@ -198,7 +198,7 @@ public class RSTableModel extends AbstractTableModel implements ResultSet2DataMo
     //pour le utiliser pour la methode getColumnClass
     //pour minimizer le cout de recherche de type
     public List<Class> getColClasses() {
-        List<Class> listClasses = Collections.synchronizedList(new ArrayList<Class>());
+        List<Class> listClasses = Collections.synchronizedList(new ArrayList<>());
 
         for (int i = 0; i < colCount; i++) {
             listClasses.add(getColClass(i));
