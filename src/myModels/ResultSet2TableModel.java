@@ -114,7 +114,7 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
                 rows.add(currentRow);
             }
         } catch (SQLException ex) {
-            MessageReporting.showMessage(Level.SEVERE, getClass(), "loadResultSet", "Loading model from resultset fail!");
+            MessageReporting.showMessage(Level.SEVERE, getClass(), "loadResultSet()", "Loading model from resultset fail!");
             ExceptionReporting.showException(ex);
         } finally {
             fireTableDataChanged();
@@ -124,66 +124,6 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
                 ExceptionReporting.showException(ex);
             }
         }
-
-//        try {
-//            this.resultSet = rs;
-//            this.metaData = rs.getMetaData();
-//            this.colCount = metaData.getColumnCount();
-//        } catch (SQLException ex) {
-//            ExceptionReporting.showException(ex);
-//        }
-//
-//        this.colNames = getColNames();
-//        this.colClasses = getColClasses();
-//
-//        //save the IDs of checked rows and restor thier state after relaod.
-//        if (rows != null && isCheckable()) {
-//            Iterator<List<Object>> it = rows.iterator();
-//            while (it.hasNext()) {
-//                List row = it.next();
-//                int id = (Integer) row.get(0);
-//                // if the model is checkable, so the column of the checkbox is always the last column.
-//                boolean checked = ((JCheckBox) row.get(row.size() - 1)).isSelected();
-//                checkedIDs.put(id, checked);
-//            }
-//        }
-//
-//        List<Object> currentRow;
-//        try {
-//            resultSet.beforeFirst();
-//            while (resultSet.next()) {
-//                
-//                currentRow = Collections.synchronizedList(new ArrayList<Object>());
-//                for (int i = 1; i <= colCount; i++) {
-//                    currentRow.add(resultSet.getObject(i));
-//                }
-//                if (isCheckable()) {
-//                    int currentID = (Integer) currentRow.get(0);
-//                    if (checkedIDs.containsKey(currentID)) {
-//                        JCheckBox oldCheckBox = new JCheckBox();
-//                        oldCheckBox.setSelected(checkedIDs.get(currentID));
-//                        currentRow.add(oldCheckBox);
-//                    } else {
-//                        currentRow.add(new JCheckBox());
-//                        checkedIDs.put(currentID, false);
-//                    }
-//                }
-//                rows.add(currentRow);
-//            }
-//            
-//            System.out.println("rows : "+ rows.size());
-//            
-//        } catch (SQLException ex) {
-//            MessageReporting.showMessage(Level.SEVERE, getClass(), "loadResultSet", "Loading model from resultset fail!");
-//            ExceptionReporting.showException(ex);
-//        } finally {
-//            fireTableDataChanged();
-//            try {
-//                resultSet.close();
-//            } catch (SQLException ex) {
-//                ExceptionReporting.showException(ex);
-//            }
-//        }
     }
 
     @Override
@@ -209,7 +149,7 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
         try {
             resultSet.beforeFirst();
             while (resultSet.next()) {
-                rowCount ++;
+                rowCount++;
                 currentRow = Collections.synchronizedList(new ArrayList<Object>());
                 for (int i = 1; i <= colCount; i++) {
                     currentRow.add(resultSet.getObject(i));
@@ -469,7 +409,7 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
 
     @Override
     public int getRowCount() {
-        return rowCount;
+        return rows.size();
     }
 
     @Override
