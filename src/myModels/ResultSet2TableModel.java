@@ -42,18 +42,7 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
     public ResultSet2TableModel(ResultSet rs, boolean checkable) {
         super();
         this.checkable = checkable;
-        setResultSet(rs);
-    }
-
-    public final void setResultSet(ResultSet resultSet) {
-        this.resultSet = resultSet;
-        if (resultSet != null) {
-            loadResultSet(resultSet);
-        }
-    }
-
-    public ResultSet getResultSet() {
-        return resultSet;
+        loadResultSet(rs);
     }
 
     /**
@@ -63,6 +52,7 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
      */
     @Override
     public final void loadResultSet(ResultSet rs) {
+        if(rs == null) return;
         System.out.println("loading result set....."); 
         try {
             this.resultSet = rs;
