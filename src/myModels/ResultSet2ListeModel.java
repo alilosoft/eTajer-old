@@ -165,11 +165,6 @@ public class ResultSet2ListeModel extends MyJListeModel implements ResultSet2Dat
     }
 
     @Override
-    public void readRows(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void readCols(ResultSet rs) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

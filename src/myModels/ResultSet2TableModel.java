@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.*;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.SwingUtilities;
 import javax.swing.table.AbstractTableModel;
@@ -51,8 +52,6 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
         this.resultSet = resultSet;
         if (resultSet != null) {
             loadResultSet(resultSet);
-            //readCols(resultSet);
-            //readRows(resultSet);
         }
     }
 
@@ -138,48 +137,6 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
         this.colNames = getColNames();
         this.colClasses = getColClasses();
         
-    }
-
-    @Override
-    synchronized public void readRows(ResultSet rs) {
-        this.resultSet = rs;
-        System.out.println("loading rows.....");
-        rows.clear();
-        List<Object> currentRow;
-        try {
-            resultSet.beforeFirst();
-            while (resultSet.next()) {
-                rowCount++;
-                currentRow = Collections.synchronizedList(new ArrayList<Object>());
-                for (int i = 1; i <= colCount; i++) {
-                    currentRow.add(resultSet.getObject(i));
-                }
-                if (isCheckable()) {
-                    int currentID = (Integer) currentRow.get(0);
-                    if (checkedIDs.containsKey(currentID)) {
-                        JCheckBox oldCheckBox = new JCheckBox();
-                        oldCheckBox.setSelected(checkedIDs.get(currentID));
-                        currentRow.add(oldCheckBox);
-                    } else {
-                        currentRow.add(new JCheckBox());
-                        checkedIDs.put(currentID, false);
-                    }
-                }
-                rows.add(currentRow);
-                fireTableDataChanged();
-            }
-        } catch (SQLException ex) {
-            MessageReporting.showMessage(Level.SEVERE, getClass(), "loadResultSet", "Loading model from resultset fail!");
-            ExceptionReporting.showException(ex);
-        } finally {
-            try {
-                //fireTableDataChanged();
-                //resultSet.getStatement().close();
-                resultSet.close();
-            } catch (SQLException ex) {
-                ExceptionReporting.showException(ex);
-            }
-        }
     }
 
     /**
