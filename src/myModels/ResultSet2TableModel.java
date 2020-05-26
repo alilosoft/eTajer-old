@@ -53,7 +53,7 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
     @Override
     public final void loadResultSet(ResultSet rs) {
         if(rs == null) return;
-        System.out.println("loading result set....."); 
+        MessageReporting.logOnly(Level.CONFIG, "loadResultSet()....."); 
         try {
             this.resultSet = rs;
             this.metaData = rs.getMetaData();
