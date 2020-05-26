@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.*;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JCheckBox;
-import javax.swing.SwingUtilities;
 import javax.swing.table.AbstractTableModel;
 import tools.DateTools;
 import tools.ExceptionReporting;
@@ -30,7 +28,6 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
     private List<String> colNames = null;
     private List<Class> colClasses = null;
     private int colCount = 0;
-    private int rowCount = 0;
     
     private List<List<Object>> rows = Collections.synchronizedList(new ArrayList<>());
     
