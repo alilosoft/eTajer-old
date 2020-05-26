@@ -55,15 +55,15 @@ public class RSTableModel extends AbstractTableModel implements ResultSet2DataMo
         if(rs == null) return;
         MessageReporting.logOnly(Level.CONFIG, "loadResultSet()....."); 
         try {
-            this.resultSet = rs;
-            this.metaData = rs.getMetaData();
-            this.colCount = metaData.getColumnCount();
+            resultSet = rs;
+            metaData = rs.getMetaData();
+            colCount = metaData.getColumnCount();
         } catch (SQLException ex) {
             ExceptionReporting.showException(ex);
         }
 
-        this.colNames = getColNames();
-        this.colClasses = getColClasses();
+        colNames = getColNames();
+        colClasses = getColClasses();
 
         //save the IDs of checked rows and restor thier state after relaod.
         if (rows != null && isCheckable()) {
