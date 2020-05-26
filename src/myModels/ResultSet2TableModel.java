@@ -113,20 +113,6 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
     }
 
     @Override
-    public final void readCols(ResultSet rs) {
-        this.resultSet = rs;
-        try {
-            this.metaData = resultSet.getMetaData();
-            this.colCount = metaData.getColumnCount();
-        } catch (SQLException ex) {
-            ExceptionReporting.showException(ex);
-        }
-        this.colNames = getColNames();
-        this.colClasses = getColClasses();
-        
-    }
-
-    @Override
     public void addSelectedRow(int modelRow) {
         selectedRows.add(modelRow);
     }

@@ -16,7 +16,6 @@ import java.util.Map;
  */
 public interface ResultSet2DataModel {
     public void loadResultSet(ResultSet rs);
-    public void readCols(ResultSet rs);
     // Setters //
     public void addSelectedRow(int row);
     public void clearSelectedRows();
