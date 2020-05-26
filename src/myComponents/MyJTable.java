@@ -32,7 +32,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import myComponents.myJTableRenderers.BooleanEditor;
 import myComponents.myJTableRenderers.MyTableColumnHeader;
-import myModels.ResultSet2TableModel;
+import myModels.RSTableModel;
 import tools.DateTools;
 import tools.ExceptionReporting;
 import tools.MessageReporting;
@@ -42,7 +42,7 @@ import tools.MessageReporting;
  * @author alilo
  * @param <Model>
  */
-public class MyJTable<Model extends ResultSet2TableModel> extends JTable {
+public class MyJTable<Model extends RSTableModel> extends JTable {
 
     public static final String MODEL_SELECTED_ROW_PROP = "modelSelectedRow";
     public static final int EXACT_MATCH_FILTER = 1;
@@ -50,9 +50,9 @@ public class MyJTable<Model extends ResultSet2TableModel> extends JTable {
     public static final int END_WITH_FILTER = 3;
     public static final int ANY_MATCH_FILTER = 4;
     private final Model model;
-    private final Map<Integer, RowFilter<ResultSet2TableModel, Integer>> andFiltersMap = new HashMap<>();
-    private final Map<Integer, RowFilter<ResultSet2TableModel, Integer>> orFiltersMap = new HashMap<>();
-    private TableRowSorter<ResultSet2TableModel> sorter;
+    private final Map<Integer, RowFilter<RSTableModel, Integer>> andFiltersMap = new HashMap<>();
+    private final Map<Integer, RowFilter<RSTableModel, Integer>> orFiltersMap = new HashMap<>();
+    private TableRowSorter<RSTableModel> sorter;
     private static final Comparator CHECKBOX_COMPARATOR = new JCheckBoxComparator();
 
     /**
@@ -68,7 +68,7 @@ public class MyJTable<Model extends ResultSet2TableModel> extends JTable {
         getTableHeader().setDefaultRenderer(new MyTableColumnHeader());
         customizeView();
         customizeBehavior();
-        sorter = new TableRowSorter<ResultSet2TableModel>(model) {
+        sorter = new TableRowSorter<RSTableModel>(model) {
 
             @Override
             public Comparator getComparator(int column) {
@@ -216,7 +216,7 @@ public class MyJTable<Model extends ResultSet2TableModel> extends JTable {
         }
 
         try {
-            RowFilter<ResultSet2TableModel, Integer> orRowFilter = RowFilter.orFilter(orFiltersMap.values());
+            RowFilter<RSTableModel, Integer> orRowFilter = RowFilter.orFilter(orFiltersMap.values());
             //System.out.println("andFilter map key: " + this.hashCode());
             andFiltersMap.put(this.hashCode(), orRowFilter);
             sorter.setRowFilter(RowFilter.andFilter(andFiltersMap.values()));

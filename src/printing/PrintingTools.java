@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.util.HashMap;
 import myComponents.MyJTable;
 import myComponents.MyTableJRDataSource;
-import myModels.ResultSet2TableModel;
+import myModels.RSTableModel;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -134,7 +134,7 @@ public class PrintingTools {
         p.put("ID_VNT", 7);
         //PrintingTools.previewReport("/reporting/Facture_FR_A4_FullPage.jasper", null, p);
         
-        ResultSet2TableModel model = new ResultSet2TableModel(ProduitDAO.getInstance().getAll(), false);
+        RSTableModel model = new RSTableModel(ProduitDAO.getInstance().getAll(), false);
         MyJTable jTable = new MyJTable(model);
         MyTableJRDataSource tableDataSource = new MyTableJRDataSource(jTable);
         JRTableModelDataSource modelDataSource = new JRTableModelDataSource(model);

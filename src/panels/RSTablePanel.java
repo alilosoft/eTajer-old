@@ -11,10 +11,10 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import myComponents.MyJTable;
 import myModels.FilterColsComboBoxModel;
-import myModels.ResultSet2TableModel;
+import myModels.RSTableModel;
 import tools.ExceptionReporting;
 
-public abstract class RSTablePanel<Entity extends EntityClass, DAO extends dao.TableDAO<Entity, ?>> extends ResultSet_Panel<Entity, DAO, ResultSet2TableModel> {
+public abstract class RSTablePanel<Entity extends EntityClass, DAO extends dao.TableDAO<Entity, ?>> extends ResultSet_Panel<Entity, DAO, RSTableModel> {
 
     public final String VISIBLE_COLS = this.getClass().getName() + "_VisibleCols";
 
@@ -36,7 +36,7 @@ public abstract class RSTablePanel<Entity extends EntityClass, DAO extends dao.T
 
     public RSTablePanel(Container owner, boolean checkable) {
         super(owner);
-        model = new ResultSet2TableModel(getResultSet(), checkable);
+        model = new RSTableModel(getResultSet(), checkable);
 
         table = new MyJTable(model) {
 
@@ -191,7 +191,7 @@ public abstract class RSTablePanel<Entity extends EntityClass, DAO extends dao.T
     }
 
     @Override
-    public final void setModel(ResultSet2TableModel model) {
+    public final void setModel(RSTableModel model) {
         this.model = model;
         this.table.setModel(model);
     }
@@ -248,7 +248,7 @@ public abstract class RSTablePanel<Entity extends EntityClass, DAO extends dao.T
     }
 
     @Override
-    public final ResultSet2TableModel getModel() {
+    public final RSTableModel getModel() {
         return model;
     }
 

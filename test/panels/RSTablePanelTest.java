@@ -8,7 +8,7 @@ package panels;
 import dao.UserDAO;
 import java.sql.ResultSet;
 import javax.swing.table.TableModel;
-import myModels.ResultSet2TableModel;
+import myModels.RSTableModel;
 
 /**
  *
@@ -66,7 +66,7 @@ public class RSTablePanelTest extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ResultSet usersRS = UserDAO.getInstance().getAll();
-        TableModel usersTModel = new ResultSet2TableModel(usersRS, false);
+        TableModel usersTModel = new RSTableModel(usersRS, false);
         jTable1.setModel(usersTModel);
     }//GEN-LAST:event_jButton1ActionPerformed
 

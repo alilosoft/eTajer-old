@@ -8,7 +8,7 @@ import entities.Famille;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import myComponents.MyJFrame;
-import myModels.ResultSet2TableModel;
+import myModels.RSTableModel;
 import panels.RSTablePanel;
 import dao.FamilleDAO;
 import java.awt.Dimension;

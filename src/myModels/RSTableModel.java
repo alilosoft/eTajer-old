@@ -21,7 +21,7 @@ import tools.MessageReporting;
  *
  * @author alilo
  */
-public class ResultSet2TableModel extends AbstractTableModel implements ResultSet2DataModel {
+public class RSTableModel extends AbstractTableModel implements ResultSet2DataModel {
 
     private ResultSet resultSet = null;
     private ResultSetMetaData metaData;
@@ -39,7 +39,7 @@ public class ResultSet2TableModel extends AbstractTableModel implements ResultSe
     private final Map<Integer, Boolean> checkedIDs = new HashMap<>();
 
     //generate a Tabelmodel from resultset
-    public ResultSet2TableModel(ResultSet rs, boolean checkable) {
+    public RSTableModel(ResultSet rs, boolean checkable) {
         super();
         this.checkable = checkable;
         loadResultSet(rs);
