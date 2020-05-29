@@ -50,7 +50,7 @@ import printing.VentePrinting;
  *
  * @author alilo
  */
-public class CashierPanel extends MajPanel<Vente, VenteDAO> {
+public class CarteEditorPanel extends MajPanel<Vente, VenteDAO> {
 
     private static final String TYPE_VNT_PREF = "TypeVntPref";
     private static final String AUTO_PRINT_PAYE = "PrintAfterPaye";
@@ -80,7 +80,7 @@ public class CashierPanel extends MajPanel<Vente, VenteDAO> {
      *
      * @param listPanel
      */
-    public CashierPanel(CRUDPanel listPanel) {
+    public CarteEditorPanel(CRUDPanel listPanel) {
         super(listPanel);
         initComponents();
         initMajPanel(fieldsPanel);
@@ -340,10 +340,10 @@ public class CashierPanel extends MajPanel<Vente, VenteDAO> {
                     if (getEditedEntity().isValidee()) {
                         String mess = "Vous ne pouvez pas ajouter des produits a une livraison validée!\n"
                                 + "Voulez vous crée une nouvelle livraison?";
-                        int rep = JOptionPane.showConfirmDialog(CashierPanel.this, mess, "Attention!", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION);
+                        int rep = JOptionPane.showConfirmDialog(CarteEditorPanel.this, mess, "Attention!", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION);
                         if (rep == JOptionPane.YES_OPTION) {
-                            CashierPanel.this.add();
-                            CashierPanel.this.save();
+                            CarteEditorPanel.this.add();
+                            CarteEditorPanel.this.save();
                         } else {
                             return;
                         }
@@ -1170,7 +1170,7 @@ public class CashierPanel extends MajPanel<Vente, VenteDAO> {
             @Override
             public void run() {
                 MyJFrame frame = new MyJFrame();
-                frame.add(new CashierPanel(null));
+                frame.add(new CarteEditorPanel(null));
                 frame.pack();
                 frame.setVisible(true);
             }
