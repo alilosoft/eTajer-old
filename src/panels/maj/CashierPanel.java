@@ -704,6 +704,8 @@ public class CashierPanel extends MajPanel<Vente, VenteDAO> {
         creditMenu = new javax.swing.JPopupMenu();
         autoAddCredItem = new javax.swing.JCheckBoxMenuItem();
         autoPrintCreditItem = new javax.swing.JCheckBoxMenuItem();
+        versBtn = new com.l2fprod.common.swing.JLinkButton();
+        creditBtn = new com.l2fprod.common.swing.JLinkButton();
         fieldsPanel = new javax.swing.JPanel();
         vntFieldsPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -715,10 +717,9 @@ public class CashierPanel extends MajPanel<Vente, VenteDAO> {
         jLabel1 = new javax.swing.JLabel();
         selClientPanel = new panels.SelectionPanel<>();
         reglP = new javax.swing.JPanel();
-        versBtn = new com.l2fprod.common.swing.JLinkButton();
-        creditBtn = new com.l2fprod.common.swing.JLinkButton();
         retourBtn = new com.l2fprod.common.swing.JLinkButton();
         payeBtn = new com.l2fprod.common.swing.JLinkButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 32767));
         totalPanel = new panels.views.MontantPanel();
         detailsHolderPanel = new javax.swing.JPanel();
         opersP = new javax.swing.JPanel();
@@ -797,6 +798,27 @@ public class CashierPanel extends MajPanel<Vente, VenteDAO> {
             }
         });
         creditMenu.add(autoPrintCreditItem);
+
+        versBtn.setAction(versementAction);
+        versBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        versBtn.setForeground(new java.awt.Color(51, 255, 0));
+        versBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons/vers24.png"))); // NOI18N
+        versBtn.setText("Versé (F7)");
+        versBtn.setToolTipText("F7");
+        versBtn.setComponentPopupMenu(verseMenu);
+        versBtn.setFocusable(false);
+        versBtn.setFont(new java.awt.Font("Square721 BT", 0, 16)); // NOI18N
+        versBtn.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        creditBtn.setAction(creditAction);
+        creditBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        creditBtn.setForeground(new java.awt.Color(51, 255, 0));
+        creditBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons/credit24.png"))); // NOI18N
+        creditBtn.setText("Crédit (F9)");
+        creditBtn.setToolTipText("F9");
+        creditBtn.setComponentPopupMenu(creditMenu);
+        creditBtn.setFocusable(false);
+        creditBtn.setFont(new java.awt.Font("Square721 BT", 0, 16)); // NOI18N
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 2, 2, 2));
         setFocusCycleRoot(true);
@@ -902,51 +924,22 @@ public class CashierPanel extends MajPanel<Vente, VenteDAO> {
         reglP.setFocusable(false);
         reglP.setMinimumSize(new java.awt.Dimension(287, 10));
         java.awt.GridBagLayout reglPLayout = new java.awt.GridBagLayout();
-        reglPLayout.columnWidths = new int[] {0, 0, 0};
+        reglPLayout.columnWidths = new int[] {0};
         reglPLayout.rowHeights = new int[] {0, 0, 0, 0, 0};
         reglP.setLayout(reglPLayout);
-
-        versBtn.setAction(versementAction);
-        versBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        versBtn.setForeground(new java.awt.Color(51, 255, 0));
-        versBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons/vers24.png"))); // NOI18N
-        versBtn.setText("Versé (F7)");
-        versBtn.setToolTipText("F7");
-        versBtn.setComponentPopupMenu(verseMenu);
-        versBtn.setFocusable(false);
-        versBtn.setFont(new java.awt.Font("Square721 BT", 0, 16)); // NOI18N
-        versBtn.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        reglP.add(versBtn, gridBagConstraints);
-
-        creditBtn.setAction(creditAction);
-        creditBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        creditBtn.setForeground(new java.awt.Color(51, 255, 0));
-        creditBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons/credit24.png"))); // NOI18N
-        creditBtn.setText("Crédit (F9)");
-        creditBtn.setToolTipText("F9");
-        creditBtn.setComponentPopupMenu(creditMenu);
-        creditBtn.setFocusable(false);
-        creditBtn.setFont(new java.awt.Font("Square721 BT", 0, 16)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        reglP.add(creditBtn, gridBagConstraints);
 
         retourBtn.setAction(retourAction);
         retourBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         retourBtn.setForeground(new java.awt.Color(255, 0, 0));
         retourBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/actions/cancelVnt24.png"))); // NOI18N
-        retourBtn.setText("Annuler (ESC)");
+        retourBtn.setText("Annuler ESC");
         retourBtn.setToolTipText("Annuler la livraison sans suppression (Esc)");
         retourBtn.setFocusable(false);
         retourBtn.setFont(new java.awt.Font("Square721 BT", 1, 16)); // NOI18N
+        retourBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        retourBtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
@@ -955,22 +948,27 @@ public class CashierPanel extends MajPanel<Vente, VenteDAO> {
         payeBtn.setAction(paiementAction);
         payeBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         payeBtn.setForeground(new java.awt.Color(51, 255, 0));
-        payeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons/dollar2-48.png"))); // NOI18N
-        payeBtn.setText("Payée (F4)");
+        payeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons/vente32.png"))); // NOI18N
+        payeBtn.setText("Validée F4");
         payeBtn.setToolTipText("F4");
         payeBtn.setComponentPopupMenu(payeMenu);
         payeBtn.setFocusable(false);
         payeBtn.setFont(new java.awt.Font("Square721 BT", 1, 24)); // NOI18N
         payeBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        payeBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        payeBtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        payeBtn.setIconTextGap(10);
         payeBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         reglP.add(payeBtn, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        reglP.add(filler1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -983,7 +981,7 @@ public class CashierPanel extends MajPanel<Vente, VenteDAO> {
         totalPanel.setMontantFont(new java.awt.Font("DS-Digital", 0, 100)); // NOI18N
         totalPanel.setOpaque(true);
         totalPanel.setTitleIcon("\"\"");
-        totalPanel.setTitleString("A Payé:");
+        totalPanel.setTitleString("Total:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -1136,6 +1134,7 @@ public class CashierPanel extends MajPanel<Vente, VenteDAO> {
     private myComponents.MyJDateChooser dateChooser;
     private javax.swing.JPanel detailsHolderPanel;
     private javax.swing.JPanel fieldsPanel;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JTextField heureField;
     private com.l2fprod.common.swing.JLinkButton imprBtn;
     private javax.swing.JLabel jLabel1;
