@@ -2,5 +2,5 @@
 /build/
 /log/
 *.dll
-/nbproject/
+/nbproject/private/
 
