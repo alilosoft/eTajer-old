@@ -1,8 +1,6 @@
-/etajer_jar/
 /dist/
 /build/
 /log/
-desktop.ini
 *.dll
 /nbproject/
 
