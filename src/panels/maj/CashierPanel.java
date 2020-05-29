@@ -42,7 +42,7 @@ import panels.CRUDPanel;
 import static panels.CRUDPanel.DELETE;
 import static panels.CRUDPanel.EDIT;
 import static panels.CRUDPanel.INSERT;
-import panels.details.DetailsVntComptoirP;
+import panels.details.CarteItemsPanel;
 import panels.crud.ListeVentesPanel;
 import printing.VentePrinting;
 
@@ -50,7 +50,7 @@ import printing.VentePrinting;
  *
  * @author alilo
  */
-public class MajVntComptoirPanel extends MajPanel<Vente, VenteDAO> {
+public class CashierPanel extends MajPanel<Vente, VenteDAO> {
 
     private static final String TYPE_VNT_PREF = "TypeVntPref";
     private static final String AUTO_PRINT_PAYE = "PrintAfterPaye";
@@ -62,7 +62,7 @@ public class MajVntComptoirPanel extends MajPanel<Vente, VenteDAO> {
     private static final String AUTO_ADD_CREDIT = "AddAfterCredit";
 
     private ListeVentesPanel listeVentesPanel;
-    protected DetailsVntComptoirP detailsVentePanel;
+    protected CarteItemsPanel detailsVentePanel;
     private ListeClientsPanel clientsPanel;
     // Vente fields
     private Client client;
@@ -80,7 +80,7 @@ public class MajVntComptoirPanel extends MajPanel<Vente, VenteDAO> {
      *
      * @param listPanel
      */
-    public MajVntComptoirPanel(CRUDPanel listPanel) {
+    public CashierPanel(CRUDPanel listPanel) {
         super(listPanel);
         initComponents();
         initMajPanel(fieldsPanel);
@@ -220,7 +220,7 @@ public class MajVntComptoirPanel extends MajPanel<Vente, VenteDAO> {
         return validee;
     }
 
-    public DetailsVntComptoirP getDetailsVentePanel() {
+    public CarteItemsPanel getDetailsVentePanel() {
         return detailsVentePanel;
     }
 
@@ -328,7 +328,7 @@ public class MajVntComptoirPanel extends MajPanel<Vente, VenteDAO> {
     }
 
     private void initDetailsPanel() {
-        detailsVentePanel = (DetailsVntComptoirP) new DetailsVntComptoirP(this, false) {
+        detailsVentePanel = (CarteItemsPanel) new CarteItemsPanel(this, false) {
             {
                 setAllowedOperation(INSERT, false);
                 setAllowedOperation(EDIT, false);
@@ -340,10 +340,10 @@ public class MajVntComptoirPanel extends MajPanel<Vente, VenteDAO> {
                     if (getEditedEntity().isValidee()) {
                         String mess = "Vous ne pouvez pas ajouter des produits a une livraison validée!\n"
                                 + "Voulez vous crée une nouvelle livraison?";
-                        int rep = JOptionPane.showConfirmDialog(MajVntComptoirPanel.this, mess, "Attention!", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION);
+                        int rep = JOptionPane.showConfirmDialog(CashierPanel.this, mess, "Attention!", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION);
                         if (rep == JOptionPane.YES_OPTION) {
-                            MajVntComptoirPanel.this.add();
-                            MajVntComptoirPanel.this.save();
+                            CashierPanel.this.add();
+                            CashierPanel.this.save();
                         } else {
                             return;
                         }
@@ -355,7 +355,7 @@ public class MajVntComptoirPanel extends MajPanel<Vente, VenteDAO> {
         }.getNavigNSelectList();
     }
 
-    public final void setDetailsVntPanel(DetailsVntComptoirP details) {
+    public final void setDetailsVntPanel(CarteItemsPanel details) {
         if (details == null) {
             initDetailsPanel();
         } else {
@@ -713,7 +713,7 @@ public class MajVntComptoirPanel extends MajPanel<Vente, VenteDAO> {
         jLabel5 = new javax.swing.JLabel();
         heureField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        selClientPanel = new panels.SelectionPanel<Client>();
+        selClientPanel = new panels.SelectionPanel<>();
         reglP = new javax.swing.JPanel();
         versBtn = new com.l2fprod.common.swing.JLinkButton();
         creditBtn = new com.l2fprod.common.swing.JLinkButton();
@@ -1171,7 +1171,7 @@ public class MajVntComptoirPanel extends MajPanel<Vente, VenteDAO> {
             @Override
             public void run() {
                 MyJFrame frame = new MyJFrame();
-                frame.add(new MajVntComptoirPanel(null));
+                frame.add(new CashierPanel(null));
                 frame.pack();
                 frame.setVisible(true);
             }

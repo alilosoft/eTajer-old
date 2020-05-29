@@ -39,7 +39,7 @@ import panels.maj.MajLigneVentePanel;
  *
  * @author alilo
  */
-public class DetailsVntComptoirP extends RSTablePanel<LigneVnt, LigneVenteDAO> {
+public class CarteItemsPanel extends RSTablePanel<LigneVnt, LigneVenteDAO> {
 
     {
         setPreferredSize(new Dimension(600, 400));
@@ -48,7 +48,7 @@ public class DetailsVntComptoirP extends RSTablePanel<LigneVnt, LigneVenteDAO> {
     }
     private Vente masterVente;
 
-    public DetailsVntComptoirP(Container owner, boolean checkable) {
+    public CarteItemsPanel(Container owner, boolean checkable) {
         super(owner, checkable);
         initComponents();
         add(mainPanel, BorderLayout.CENTER);
@@ -71,7 +71,7 @@ public class DetailsVntComptoirP extends RSTablePanel<LigneVnt, LigneVenteDAO> {
     }
 
     @Override
-    public DetailsVntComptoirP initTableView() {
+    public CarteItemsPanel initTableView() {
         getTable().setColumnVisible("ID", false);
         getTable().setColumnVisible("ID_VNT", false);
         getTable().setColumnVisible("ID_PROD", false);
@@ -598,7 +598,7 @@ public class DetailsVntComptoirP extends RSTablePanel<LigneVnt, LigneVenteDAO> {
             public void run() {
                 MyJFrame frame = new MyJFrame();
                 //ArticleDAO.getInstance().setGetAllParam(0);
-                frame.getContentPane().add(new DetailsVntComptoirP(frame, false).initTableView(), BorderLayout.CENTER);
+                frame.getContentPane().add(new CarteItemsPanel(frame, false).initTableView(), BorderLayout.CENTER);
                 frame.pack();
                 frame.setVisible(true);
             }

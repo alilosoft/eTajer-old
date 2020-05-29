@@ -52,7 +52,7 @@ import javax.swing.*;
 import myComponents.MyJPanel;
 import panels.CRUDPanel;
 import panels.MasterDetailsPanel;
-import panels.maj.MajVntComptoirPanel;
+import panels.maj.CashierPanel;
 import panels.masterDetails.GestAchatsPanel;
 import panels.masterDetails.GestStockPanel;
 import panels.masterDetails.GestProduitsPanel;
@@ -289,7 +289,7 @@ public class MainApp extends javax.swing.JFrame {
 
                 if (vntComptoirPanel == null || currentUser.getUserGp().equals(previousUser.getUserGp())) {
                     initStateL.setText("Préparation: Vente au Comptoire");
-                    vntComptoirPanel = new MajVntComptoirPanel(null);
+                    vntComptoirPanel = new CashierPanel(null);
                     loginDialog.setProgress(progress += 5);
                 }
 
@@ -306,7 +306,7 @@ public class MainApp extends javax.swing.JFrame {
             } else {
                 if (vntComptoirPanel == null || currentUser.getUserGp().equals(previousUser.getUserGp())) {
                     initStateL.setText("Préparation: Vente au Comptoire");
-                    vntComptoirPanel = new MajVntComptoirPanel(null);
+                    vntComptoirPanel = new CashierPanel(null);
                     loginDialog.setProgress(progress += 40);
                     //setContentPane(vntComptoirPanel);
                     venteComptoir();
@@ -734,11 +734,11 @@ public class MainApp extends javax.swing.JFrame {
         }
     };
 
-    private MajVntComptoirPanel vntComptoirPanel = null;
+    private CashierPanel vntComptoirPanel = null;
 
     public void venteComptoir() {
         if (vntComptoirPanel == null || isUserChanged()) {
-            vntComptoirPanel = new MajVntComptoirPanel(null);
+            vntComptoirPanel = new CashierPanel(null);
         }
         if (mainTabbedPane.indexOfComponent(vntComptoirPanel) == -1) {
             mainTabbedPane.addTab("Comptoir", gestVentesBtn.getIcon(), vntComptoirPanel);
