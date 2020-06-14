@@ -633,8 +633,6 @@ public abstract class CRUDPanel<E extends EntityClass> extends MyJPanel {
         optionsButton.setText(bundle.getString("CRUDPanel.optionsButton.text")); // NOI18N
         optionsButton.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         optionsButton.setFocusable(false);
-        optionsButton.setMinimumSize(new java.awt.Dimension(120, 28));
-        optionsButton.setPreferredSize(new java.awt.Dimension(120, 28));
         optionsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 optionsButtonActionPerformed(evt);
@@ -645,6 +643,7 @@ public abstract class CRUDPanel<E extends EntityClass> extends MyJPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
         operPanel.add(optionsButton, gridBagConstraints);
 
         insertButton.setAction(insertAction);
@@ -829,6 +828,7 @@ public abstract class CRUDPanel<E extends EntityClass> extends MyJPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         mainPanel.add(navigPanel, gridBagConstraints);
 
+        scrollPan.setBorder(null);
         scrollPan.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
