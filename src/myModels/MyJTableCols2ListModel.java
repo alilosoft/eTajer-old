@@ -21,7 +21,7 @@ public class MyJTableCols2ListModel extends MyJListeModel {
     public static final int ONLY_HIDEN_COLS = 3;
     private boolean onlyVisible, onlyHiden, all;
 
-    protected List<String> colsNames = Collections.synchronizedList(new ArrayList<String>());
+    protected List<String> colsNames = Collections.synchronizedList(new ArrayList<>());
 
     public MyJTableCols2ListModel(MyJTable table, int colsGroup) {
         super(true);
