@@ -21,7 +21,7 @@ import tools.ExceptionReporting;
  *
  * @author alilo
  */
-public class RSTablePanelSettings extends SettingsPanel {
+public class TablePanelSettings extends SettingsPanel {
 
     private final RSTablePanel tablePanel;
     private MyJTableCols2ListModel filterColsListModel;
@@ -37,7 +37,7 @@ public class RSTablePanelSettings extends SettingsPanel {
      *
      * @param panel
      */
-    public RSTablePanelSettings(RSTablePanel panel) {
+    public TablePanelSettings(RSTablePanel panel) {
         super(panel);
         initComponents();
         initSettingsPanel(settingsTabbedPane);
