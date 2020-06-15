@@ -140,7 +140,7 @@ public class RSTablePanelSettings extends SettingsPanel {
 
         filterModebuttonGroup = new javax.swing.ButtonGroup();
         settingsTabbedPane = new javax.swing.JTabbedPane();
-        searcheTab = new javax.swing.JPanel();
+        filterTab = new javax.swing.JPanel();
         startWithRadio = new javax.swing.JRadioButton();
         endWithRadio = new javax.swing.JRadioButton();
         containsRadio = new javax.swing.JRadioButton();
@@ -166,14 +166,14 @@ public class RSTablePanelSettings extends SettingsPanel {
         scrollPane = new javax.swing.JScrollPane();
         printTableBtn1 = new javax.swing.JButton();
 
-        searcheTab.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 2, 2, 2));
+        filterTab.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 2, 2, 2));
         java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
         jPanel1Layout.columnWidths = new int[] {0, 1, 0, 1, 0, 1, 0};
         jPanel1Layout.rowHeights = new int[] {0, 3, 0, 3, 0, 3, 0};
-        searcheTab.setLayout(jPanel1Layout);
+        filterTab.setLayout(jPanel1Layout);
 
         filterModebuttonGroup.add(startWithRadio);
-        startWithRadio.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        startWithRadio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         startWithRadio.setText("Commance Par");
         startWithRadio.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -181,37 +181,37 @@ public class RSTablePanelSettings extends SettingsPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        searcheTab.add(startWithRadio, gridBagConstraints);
+        filterTab.add(startWithRadio, gridBagConstraints);
 
         filterModebuttonGroup.add(endWithRadio);
-        endWithRadio.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        endWithRadio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         endWithRadio.setText("Termine Par");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        searcheTab.add(endWithRadio, gridBagConstraints);
+        filterTab.add(endWithRadio, gridBagConstraints);
 
         filterModebuttonGroup.add(containsRadio);
-        containsRadio.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        containsRadio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         containsRadio.setText("Contient");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        searcheTab.add(containsRadio, gridBagConstraints);
+        filterTab.add(containsRadio, gridBagConstraints);
 
         filterModebuttonGroup.add(exactRadio);
-        exactRadio.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        exactRadio.setText("Identique");
+        exactRadio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        exactRadio.setText("Exact");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        searcheTab.add(exactRadio, gridBagConstraints);
+        filterTab.add(exactRadio, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel1.setText("Choisissez le mode de filtre:");
@@ -221,7 +221,7 @@ public class RSTablePanelSettings extends SettingsPanel {
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        searcheTab.add(jLabel1, gridBagConstraints);
+        filterTab.add(jLabel1, gridBagConstraints);
 
         filterColsList.setCheckable(true);
         filterColsScrollPan.setViewportView(filterColsList);
@@ -234,7 +234,7 @@ public class RSTablePanelSettings extends SettingsPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        searcheTab.add(filterColsScrollPan, gridBagConstraints);
+        filterTab.add(filterColsScrollPan, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setText("Appliquer le filtre sur les colonnes sélectionnés:");
@@ -243,9 +243,9 @@ public class RSTablePanelSettings extends SettingsPanel {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        searcheTab.add(jLabel2, gridBagConstraints);
+        filterTab.add(jLabel2, gridBagConstraints);
 
-        settingsTabbedPane.addTab("Recherche", searcheTab);
+        settingsTabbedPane.addTab("Filtrage", filterTab);
 
         viewTab.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 2, 2, 2));
         java.awt.GridBagLayout viewTabLayout = new java.awt.GridBagLayout();
@@ -330,6 +330,7 @@ public class RSTablePanelSettings extends SettingsPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         printTab.add(printTableBtn, gridBagConstraints);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Police d'impression");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -351,6 +352,7 @@ public class RSTablePanelSettings extends SettingsPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         printTab.add(jLabel3, gridBagConstraints);
 
+        printTitleField.setForeground(new java.awt.Color(255, 0, 0));
         printTitleField.setText("Aucun Titre!");
         printTitleField.setMinimumSize(new java.awt.Dimension(4, 25));
         printTitleField.setPreferredSize(new java.awt.Dimension(125, 25));
@@ -372,7 +374,7 @@ public class RSTablePanelSettings extends SettingsPanel {
 
         printTableBtn1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         printTableBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/actions/print16.png"))); // NOI18N
-        printTableBtn1.setText("Imprimer");
+        printTableBtn1.setText("Print");
         printTableBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printTableBtn1ActionPerformed(evt);
@@ -428,6 +430,7 @@ public class RSTablePanelSettings extends SettingsPanel {
     private myComponents.MyJListe filterColsList;
     private javax.swing.JScrollPane filterColsScrollPan;
     private javax.swing.ButtonGroup filterModebuttonGroup;
+    private javax.swing.JPanel filterTab;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -442,7 +445,6 @@ public class RSTablePanelSettings extends SettingsPanel {
     private javax.swing.JPanel printTableP;
     private javax.swing.JTextField printTitleField;
     private javax.swing.JScrollPane scrollPane;
-    private javax.swing.JPanel searcheTab;
     private javax.swing.JTabbedPane settingsTabbedPane;
     private javax.swing.JRadioButton startWithRadio;
     private javax.swing.JPanel viewTab;
