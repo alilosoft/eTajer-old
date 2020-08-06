@@ -89,7 +89,8 @@ public class PriceCalculator {
     }
 
     public static BigDecimal getPrixVnt(BigDecimal prixAch, double margeVal, String margeType) {
-        double prixVntDbl = 0, prixAchDbl = prixAch.doubleValue();
+        double prixVntDbl = 0; 
+        double prixAchDbl = prixAch.doubleValue();
         switch (margeType) {
             case DINARS:
                 prixVntDbl = prixAchDbl + margeVal;
