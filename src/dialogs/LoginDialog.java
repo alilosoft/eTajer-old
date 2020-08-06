@@ -67,7 +67,7 @@ public class LoginDialog extends javax.swing.JDialog {
 
     public static AppUser getUser() {
         if (user == null) {
-            AppUser usr = new AppUser();
+            AppUser usr = UserDAO.getInstance().getObjectByID(10);
             return usr;
         }
         return user;
