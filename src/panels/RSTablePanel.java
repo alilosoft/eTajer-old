@@ -5,10 +5,8 @@ import java.awt.Container;
 import java.awt.event.*;
 import java.util.List;
 import javax.swing.ComboBoxModel;
-import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import myComponents.MyJTable;
 import myModels.FilterColsComboBoxModel;
 import myModels.RSTableModel;
@@ -19,7 +17,7 @@ public abstract class RSTablePanel<Entity extends EntityClass, DAO extends dao.T
     public final String VISIBLE_COLS = this.getClass().getName() + "_VisibleCols";
 
     protected MyJTable table;
-    private final RSTablePanelSettings settingsPanel = new RSTablePanelSettings(this);
+    private final TablePanelSettings settingsPanel = new TablePanelSettings(this);
     ;
     private String[] filterCols;
     private String[] visibleCols;
