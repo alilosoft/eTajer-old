@@ -31,7 +31,8 @@ import javax.persistence.Table;
 @Table(name = "APP_USER")
 @NamedQueries({
     @NamedQuery(name = "AppUser.findAll", query = "SELECT a FROM AppUser a")})
-public class AppUser extends  EntityClass<UserDAO> implements Serializable {
+public class AppUser extends EntityClass<UserDAO> implements Serializable {
+
     @OneToMany(mappedBy = "appUser")
     private List<Session> sessionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "appUser")
@@ -58,7 +59,7 @@ public class AppUser extends  EntityClass<UserDAO> implements Serializable {
 
     public AppUser(Integer id) {
         this.id = id;
-        if(id == 1){
+        if (id == 1) {
             userGp = new UserGp(1, "Superviseur");
         }
     }
@@ -122,12 +123,12 @@ public class AppUser extends  EntityClass<UserDAO> implements Serializable {
 
     @Override
     public String toString() {
-        return "Utilisateur[ID:" + id + ", Nom:"+ login + ", Groupe:"+ userGp.getDes()+ "]";
+        return "Utilisateur[ID:" + id + ", Nom:" + login + ", Groupe:" + userGp.getDes() + "]";
     }
-    
+
     @Override
     public String getShortDesc() {
-        return login + "("+ userGp.getDes()+")";
+        return login + "(" + userGp.getDes() + ")";
     }
 
     @Override
