@@ -420,7 +420,7 @@ public class DBManager {
 
     /**
      * Attempts to establish a connection to the db using given Authentication
-     * informations.
+     * information.
      *
      * @param user
      * @param pw
@@ -503,7 +503,7 @@ public class DBManager {
             MessageReporting.logOnly(Level.INFO, "New Connection...OK!");
             c.setAutoCommit(false);
             MessageReporting.logOnly(Level.INFO, "Disable autocommit...OK!");
-            c.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
+            c.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
             MessageReporting.logOnly(Level.INFO, "Set transaction isolation level to 'READ_UNCOMMITTED'...OK!");
         } catch (SQLException ex) {
             ExceptionReporting.showException(ex);
