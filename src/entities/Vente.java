@@ -101,7 +101,7 @@ public class Vente extends EntityClass<VenteDAO> implements Serializable {
             this.validee = v.validee;
         } else {
             this.client = new Client(0);
-            this.typeVnt = TypeVnt.GROS;
+            this.typeVnt = TypeVnt.DETAIL;
 
             this.id = id;
             this.num = 0;
