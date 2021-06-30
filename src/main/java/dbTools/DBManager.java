@@ -437,6 +437,7 @@ public class DBManager {
         try {
             Connection conn = DriverManager.getConnection(dbURL, user, pw);
             MessageReporting.logOnly(Level.INFO, "New Connection to: " + dbURL + "...OK!");
+            conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
             return conn;
         } catch (SQLException ex) {
             String mess = "La connection au base de données " + dbURL + " a été échouée!\n"
