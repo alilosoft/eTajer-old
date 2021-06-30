@@ -82,7 +82,7 @@ public class GestVentesPanel extends MasterDetailsPanel {
                             lv.setQteUnitair(produitVendu.getUnite().getQte());
                             majVentePanel.getDetailsVentePanel().getMajPanel().showNewPanel(lv);
                         } else {// TypeVnt.DETAIL
-                            if (main.MainApp.getInstance().isNumLockOn()) {
+                            if (app.MainApp.getInstance().isNumLockOn()) {
                                 lv.setQteUnitair(produitVendu.getUnite().getQte());
                                 majVentePanel.getDetailsVentePanel().getMajPanel().showNewPanel(lv);
                                 //Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_NUM_LOCK, false);

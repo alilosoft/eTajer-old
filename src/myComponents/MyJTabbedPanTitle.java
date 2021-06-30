@@ -44,10 +44,10 @@ public class MyJTabbedPanTitle extends javax.swing.JPanel {
 
     public void closeTab() {
         if (maximized) {
-            main.MainApp.getInstance().getRootPanel().remove(this);
-            main.MainApp.getInstance().getRootPanel().remove(titeledComponent);
-            main.MainApp.getInstance().restorTopToolBar();
-            main.MainApp.getInstance().restorCenterPanel();
+            app.MainApp.getInstance().getRootPanel().remove(this);
+            app.MainApp.getInstance().getRootPanel().remove(titeledComponent);
+            app.MainApp.getInstance().restorTopToolBar();
+            app.MainApp.getInstance().restorCenterPanel();
         } else {
             tabbedPane.remove(titeledComponent);
         }
@@ -55,23 +55,23 @@ public class MyJTabbedPanTitle extends javax.swing.JPanel {
 
     public void maximizeTab() {
         maximized = true;
-        main.MainApp.getInstance().removeTopToolBar();
-        main.MainApp.getInstance().removeCenterPanel();
+        app.MainApp.getInstance().removeTopToolBar();
+        app.MainApp.getInstance().removeCenterPanel();
 
-        main.MainApp.getInstance().getRootPanel().add(this, BorderLayout.NORTH);
-        main.MainApp.getInstance().getRootPanel().add(titeledComponent, BorderLayout.CENTER);
+        app.MainApp.getInstance().getRootPanel().add(this, BorderLayout.NORTH);
+        app.MainApp.getInstance().getRootPanel().add(titeledComponent, BorderLayout.CENTER);
     }
 
     public void minimizeTab() {
         maximized = false;
-        main.MainApp.getInstance().getRootPanel().remove(this);
-        main.MainApp.getInstance().getRootPanel().remove(titeledComponent);
+        app.MainApp.getInstance().getRootPanel().remove(this);
+        app.MainApp.getInstance().getRootPanel().remove(titeledComponent);
         
         tabbedPane.addTab(titleLable.getText(), titleLable.getIcon(), titeledComponent);
         tabbedPane.setSelectedComponent(titeledComponent);
 
-        main.MainApp.getInstance().restorTopToolBar();
-        main.MainApp.getInstance().restorCenterPanel();
+        app.MainApp.getInstance().restorTopToolBar();
+        app.MainApp.getInstance().restorCenterPanel();
     }
     Action closeTabAction = new AbstractAction() {
 

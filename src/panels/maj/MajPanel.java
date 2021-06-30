@@ -649,7 +649,7 @@ public abstract class MajPanel<Entity extends EntityClass, DAO extends TableDAO<
         buttonsPanel.add(insertButton);
         buttonsPanel.add(filler2);
 
-        calcButton.setAction(main.MainApp.calcAction);
+        calcButton.setAction(app.MainApp.calcAction);
         calcButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons/calc16.png"))); // NOI18N
         calcButton.setFocusable(false);
         buttonsPanel.add(calcButton);

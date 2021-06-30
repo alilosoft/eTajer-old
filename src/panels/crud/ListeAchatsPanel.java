@@ -280,7 +280,7 @@ public class ListeAchatsPanel extends RSTablePanel<Achat, AchatDAO> {
     }//GEN-LAST:event_allRadioBoxActionPerformed
 
     private void recetteLinkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recetteLinkButtonActionPerformed
-        main.MainApp.getInstance().recette();
+        app.MainApp.getInstance().recette();
     }//GEN-LAST:event_recetteLinkButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

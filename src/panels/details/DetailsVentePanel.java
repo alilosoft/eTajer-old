@@ -178,7 +178,7 @@ public class DetailsVentePanel extends RSTablePanel<LigneVnt, LigneVenteDAO> {
             lv.setPuVnt(lotEnStock.getPuVntGr());
             getMajPanel().showNewPanel(lv);
         } else {
-            if (main.MainApp.getInstance().isNumLockOn()) {
+            if (app.MainApp.getInstance().isNumLockOn()) {
                 getMajPanel().showNewPanel(lv);
                 //Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_NUM_LOCK, false);
             } else {

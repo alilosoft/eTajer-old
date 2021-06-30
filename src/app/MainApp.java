@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package app;
 
 import panels.crud.ListeCreditClPanel;
 import panels.crud.InventaireStockPanel;
@@ -1023,8 +1023,6 @@ public class MainApp extends javax.swing.JFrame {
         minimizeButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         centerPanel = new javax.swing.JPanel();
-        jSplitPane1 = new javax.swing.JSplitPane();
-        tasksScrollPane = new javax.swing.JScrollPane();
         mainTabbedPane = new myComponents.MyJTabbedPane();
         homeTab = new javax.swing.JScrollPane();
         imagePanel1 = new myComponents.ImagePanel();
@@ -1051,7 +1049,7 @@ public class MainApp extends javax.swing.JFrame {
         usersButton.setAction(userAction);
         usersButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         usersButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons/user24.png"))); // NOI18N
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("main/resources"); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("app/resources"); // NOI18N
         usersButton.setText(bundle.getString("MainApp.usersButton.text")); // NOI18N
         usersButton.setFocusable(false);
         toolsTB.add(usersButton);
@@ -1064,7 +1062,6 @@ public class MainApp extends javax.swing.JFrame {
         usersButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         toolsTB.add(usersButton1);
 
-        gestProduitsP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
         gestProduitsP.setLayout(new java.awt.GridBagLayout());
 
         produitBtn.setAction(gestProdAction);
@@ -1627,18 +1624,8 @@ public class MainApp extends javax.swing.JFrame {
 
         rootPanel.add(topBar, java.awt.BorderLayout.NORTH);
 
-        centerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         centerPanel.setLayout(new java.awt.BorderLayout());
 
-        jSplitPane1.setDividerLocation(0);
-        jSplitPane1.setOneTouchExpandable(true);
-
-        tasksScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        tasksScrollPane.setMinimumSize(new java.awt.Dimension(0, 34));
-        tasksScrollPane.setPreferredSize(new java.awt.Dimension(200, 13));
-        jSplitPane1.setLeftComponent(tasksScrollPane);
-
-        mainTabbedPane.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         mainTabbedPane.setFocusable(false);
         mainTabbedPane.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         mainTabbedPane.setRequestFocusEnabled(false);
@@ -1659,7 +1646,7 @@ public class MainApp extends javax.swing.JFrame {
         imagePanel1.setLayout(imagePanel1Layout);
         imagePanel1Layout.setHorizontalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1252, Short.MAX_VALUE)
+            .addGap(0, 1463, Short.MAX_VALUE)
         );
         imagePanel1Layout.setVerticalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1670,13 +1657,10 @@ public class MainApp extends javax.swing.JFrame {
 
         mainTabbedPane.addTab(bundle.getString("MainApp.homeTab.TabConstraints.tabTitle"), new javax.swing.ImageIcon(getClass().getResource("/res/icons/tajer24.png")), homeTab); // NOI18N
 
-        jSplitPane1.setRightComponent(mainTabbedPane);
-
-        centerPanel.add(jSplitPane1, java.awt.BorderLayout.CENTER);
+        centerPanel.add(mainTabbedPane, java.awt.BorderLayout.PAGE_START);
 
         rootPanel.add(centerPanel, java.awt.BorderLayout.CENTER);
 
-        statusBar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         statusBar.setFloatable(false);
         statusBar.setRollover(true);
 
@@ -1899,7 +1883,6 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel langLabel;
     private javax.swing.JButton lockButton;
     private static javax.swing.JTabbedPane mainTabbedPane;
@@ -1915,7 +1898,6 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JToolBar statusBar;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JButton stockBtn;
-    private javax.swing.JScrollPane tasksScrollPane;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JToolBar toolsTB;
     private javax.swing.JToolBar topBar;
