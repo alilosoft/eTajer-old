@@ -8,9 +8,7 @@ package entities;
 import dao.FournissDAO;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,23 +16,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author alilo
  */
 @Entity
-@Table(name = "FOURNISSEUR", catalog = "", schema = "ALILO", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"CODE"})})
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Fournisseur.findAll", query = "SELECT f FROM Fournisseur f")})
 public class Fournisseur extends EntityClass<FournissDAO> implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fournisseur")

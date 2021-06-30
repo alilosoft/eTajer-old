@@ -20,7 +20,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -28,7 +27,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "REGLEMENT_CL", catalog = "", schema = "ALILO")
-@XmlRootElement
 public class ReglementCl extends EntityClass<ReglementClDAO> implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

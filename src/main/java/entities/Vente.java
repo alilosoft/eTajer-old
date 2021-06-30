@@ -20,14 +20,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,9 +31,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(catalog = "", schema = "ALILO")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Vente.findAll", query = "SELECT v FROM Vente v")})
 public class Vente extends EntityClass<VenteDAO> implements Serializable {
     @JoinColumn(name = "ID_USER", referencedColumnName = "ID")
     @ManyToOne(optional = false)
@@ -233,7 +226,6 @@ public class Vente extends EntityClass<VenteDAO> implements Serializable {
         return "Vente[ID:" + id +", N°:"+ num+", Le:"+ date +"]";
     }
 
-    @XmlTransient
     public List<LigneVnt> getLigneVntList() {
         return ligneVntList;
     }
@@ -242,7 +234,6 @@ public class Vente extends EntityClass<VenteDAO> implements Serializable {
         this.ligneVntList = ligneVntList;
     }
 
-    @XmlTransient
     public List<ReglementCl> getReglementClList() {
         return reglementClList;
     }

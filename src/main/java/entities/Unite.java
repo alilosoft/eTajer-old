@@ -16,7 +16,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -112,7 +111,6 @@ public class Unite extends EntityClass<UniteDAO> implements Serializable {
         this.quantifierCollection = quantifierCollection;
     }
 
-    @XmlTransient
     public List<LigneVnt> getLigneVntList() {
         return ligneVntList;
     }

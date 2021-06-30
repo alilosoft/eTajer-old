@@ -10,7 +10,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import dao.QuantifierDAO;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -21,7 +20,6 @@ import java.beans.PropertyChangeSupport;
  */
 @Entity
 @Table(name = "PRODUIT")
-@XmlRootElement
 public class Produit extends EntityClass<ProduitDAO> implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)

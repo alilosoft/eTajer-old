@@ -9,16 +9,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
 /**
  *
  * @author alilo
  */
 @Entity
 @Table(name = "CLIENT")
-@XmlRootElement
 public class Client extends EntityClass<ClientDAO> implements Serializable {
     @JoinColumn(name = "ID_FAM", referencedColumnName = "ID")
     @ManyToOne(optional = false)
@@ -205,7 +201,6 @@ public class Client extends EntityClass<ClientDAO> implements Serializable {
         return nom + ", Dettes: " + dette;
     }
 
-    @XmlTransient
     public List<Vente> getVenteList() {
         return venteList;
     }
@@ -214,7 +209,6 @@ public class Client extends EntityClass<ClientDAO> implements Serializable {
         this.venteList = venteList;
     }
 
-    @XmlTransient
     public List<ReglementCl> getReglementClList() {
         return reglementClList;
     }

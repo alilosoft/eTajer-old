@@ -17,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -25,7 +24,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "LIGNE_VNT", catalog = "", schema = "ALILO")
-@XmlRootElement
 public class LigneVnt extends EntityClass<LigneVenteDAO> implements Serializable {
     @Basic(optional = false)
     @Column(name = "QTE")

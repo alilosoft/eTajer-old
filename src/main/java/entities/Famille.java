@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -18,7 +16,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "FAMILLE")
-@XmlRootElement
 public class Famille extends EntityClass<FamilleDAO> implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -91,7 +88,6 @@ public class Famille extends EntityClass<FamilleDAO> implements Serializable {
         this.service = service;
     }
 
-    @XmlTransient
     public Collection<Categorie> getCategorieCollection() {
         return categorieCollection;
     }

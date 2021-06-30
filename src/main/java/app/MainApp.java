@@ -1531,7 +1531,7 @@ public class MainApp extends javax.swing.JFrame {
         topBar.add(gestVentesBtn);
         topBar.add(filler7);
 
-        bismillahLabel.setFont(new java.awt.Font("KacstDecorative", 0, 24)); // NOI18N
+        bismillahLabel.setFont(new java.awt.Font("Andalus", 0, 30)); // NOI18N
         bismillahLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bismillahLabel.setText("بسم الله، توكلت على الله و لا حول ولا قوة إلا بالله"); // NOI18N
         bismillahLabel.setToolTipText("لا تنس ذكر الله"); // NOI18N

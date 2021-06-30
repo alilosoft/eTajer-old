@@ -4,4 +4,11 @@
 *.dll
 /nbproject/private/
 *.log
-
+/target/
+/nbproject/
+/nb-configuration.xml
+/nbactions.xml
+/nbproject-backup/
+/lib/
+/Backup/
+derby.properties

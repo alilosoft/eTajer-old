@@ -22,7 +22,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -30,7 +29,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "CREDIT_CL", catalog = "", schema = "ALILO")
-@XmlRootElement
 public class CreditCl extends EntityClass<CreditClDAO> implements Serializable {
 
     private static final long serialVersionUID = 1L;

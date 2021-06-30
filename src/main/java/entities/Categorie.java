@@ -8,8 +8,6 @@ import dao.CategorieDAO;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -17,7 +15,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "CATEGORIE")
-@XmlRootElement
 public class Categorie extends EntityClass<CategorieDAO> implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -65,7 +62,6 @@ public class Categorie extends EntityClass<CategorieDAO> implements Serializable
         this.des = des;
     }
 
-    @XmlTransient
     public Collection<Produit> getProduitCollection() {
         return produitCollection;
     }
