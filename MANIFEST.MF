@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.10.8
+Created-By: 11.0.8+10 (Eclipse OpenJ9)
+Class-Path: lib/jcalendar-1.3.2.jar lib/l2fprod-common-all.jar lib/l2f
+ prod-common-buttonbar.jar lib/l2fprod-common-directorychooser.jar lib
+ /l2fprod-common-fontchooser.jar lib/l2fprod-common-outlookbar.jar lib
+ /l2fprod-common-sandbox.jar lib/l2fprod-common-shared.jar lib/l2fprod
+ -common-sheet.jar lib/l2fprod-common-springrcp.jar lib/l2fprod-common
+ -tasks.jar lib/l2fprod-common-totd.jar lib/ConversionNoToStr.jar lib/
+ toplink-essentials.jar lib/toplink-essentials-agent.jar lib/barbecue-
+ 1.5-beta1-2.jar lib/commons-logging-1.1.jar lib/jasperreports-6.1.0.j
+ ar lib/commons-digester-2.1.jar lib/commons-collections-3.2.1.jar lib
+ /derbynet.jar lib/derbyclient.jar lib/derbytools.jar lib/derby.jar li
+ b/beansbinding-1.2.1.jar
+Main-Class: main.MainApp
+

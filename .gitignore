@@ -3,4 +3,5 @@
 /log/
 *.dll
 /nbproject/private/
+*.log
 
