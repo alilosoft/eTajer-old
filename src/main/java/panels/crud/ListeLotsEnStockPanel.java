@@ -144,10 +144,14 @@ public class ListeLotsEnStockPanel extends RSTablePanel<EnStock, LotEnStockDAO> 
             totalStkP.setMontant(calculateTotal());
         }
     }
-
+     
+    /**
+     * What the hell this is doing in a GUI class.
+     * @return 
+     */
     public BigDecimal calculateTotal() {
         double total = 0;
-        for (int i = 0; i < getTable().getRowCount(); i++) {
+        for (int i = 0; i < getModel().getRowCount(); i++) {
             double totalRow = (double) getModel().getValueAt(getTable().convertRowIndexToModel(i), "Total/Ach");
             total += totalRow;
         }
