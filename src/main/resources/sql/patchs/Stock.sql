@@ -1,0 +1,23 @@
+-- 27/12/2016
+-- UPDATE PRIX-VENTE DE TOUT LES LOTS A LA MODIFICATION D'UN
+DROP TRIGGER T_AFT_UPD_PUVNT_UPD_PUVNT;
+
+CREATE TRIGGER T_AFT_UPD_PUVNT_UPD_PUVNT
+AFTER UPDATE OF PU_VNT_DT ON EN_STOCK
+REFERENCING NEW ROW AS NEW_STK
+FOR EACH ROW
+    UPDATE  EN_STOCK SET PU_VNT_DT = NEW_STK.PU_VNT_DT 
+    WHERE EN_STOCK.ID != NEW_STK.ID
+    AND EN_STOCK.PU_VNT_DT !=  NEW_STK.PU_VNT_DT
+    AND EN_STOCK.ID_PROD = NEW_STK.ID_PROD;
+--
+-- problème: la modification du stock se fait par: les ventes, les achats, manuelle 
+    -- => inmpossible d'intersepter les modifs manuelle seulement. 
+CREATE TABLE STOCK_HISTORY( ID  INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+                            ID_PROD INT NOT NULL,
+                            OLD_QTE DOUBLE NOT NULL DEFAULT 0,
+                            NEW_QTE DOUBLE NOT NULL DEFAULT 0,
+                            OPER_TIME TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                            CONSTRAINT STOCK_HIST_PK PRIMARY KEY (ID));
+
+

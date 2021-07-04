@@ -1,0 +1,107 @@
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+--================================ CREATION ==================================--
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+-- Last_Update: 27/12/2015
+CREATE TABLE PRODUIT( ID INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+                      ID_FAM INT NOT NULL,
+                      ID_CATEG INT NOT NULL,
+                      COD_BAR VARCHAR(30) NOT NULL,-- rename to Cod_Bar
+                      DES VARCHAR(50) NOT NULL,
+                      QTE DOUBLE NOT NULL DEFAULT 0,
+                      CUMP DECIMAL(12,2) NOT NULL DEFAULT 0,
+                      PU_ACH DECIMAL(12,2) NOT NULL DEFAULT 0,
+                      PU_VNT DECIMAL(12, 2) NOT NULL DEFAULT 0,
+                      CONSTRAINT PROD_PK PRIMARY KEY (ID),
+                      CONSTRAINT CB_UNIQ UNIQUE (COD_BAR),
+                      CONSTRAINT CHECK_QTE_STK CHECK (QTE_STK >= 0),
+                      CONSTRAINT PROD_CAT_FK FOREIGN KEY (ID_CATEG) REFERENCES CATEGORIE ON DELETE RESTRICT,
+                      CONSTRAINT PROD_FAM_FK FOREIGN KEY (ID_FAM) REFERENCES FAMILLE ON DELETE RESTRICT,
+                      CONSTRAINT PROD_STK_FK FOREIGN KEY (ID_STOCK) REFERENCES STOCK ON DELETE RESTRICT);
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+--============================== ALTERATION ==================================--
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+-- 24/08/2016;
+alter table PRODUIT drop ID_CATEG;
+--01/06/2016;
+ALTER TABLE PRODUIT DROP PMP;
+ALTER TABLE PRODUIT DROP COLUMN MARGE_SGR;
+ALTER TABLE PRODUIT DROP COLUMN MARGE_SGR;
+ALTER TABLE PRODUIT DROP COLUMN MARGE_DT;
+ALTER TABLE PRODUIT DROP COLUMN MARGE_GR;
+
+ALTER TABLE PRODUIT ADD COLUMN PU_ACH DECIMAL(12, 2) NOT NULL DEFAULT 0;
+ALTER TABLE PRODUIT ADD COLUMN PU_VNT DECIMAL(12, 2) NOT NULL DEFAULT 0;
+ALTER TABLE PRODUIT ADD COLUMN CUMP DECIMAL(12,2) NOT NULL DEFAULT 0;
+ALTER TABLE PRODUIT ADD COLUMN QTE DOUBLE NOT NULL DEFAULT 0;
+
+UPDATE PRODUIT SET QTE = QTE_GLOBAL;
+ALTER TABLE PRODUIT DROP QTE_GLOBAL;
+ALTER TABLE PRODUIT DROP QTE_MIN;
+ALTER TABLE PRODUIT DROP QTE_MAX;
+
+--28/12/2015;
+ALTER TABLE PRODUIT DROP COLUMN P_ACHAT_MOY;
+ALTER TABLE PRODUIT DROP COLUMN PU_ACHAT;
+ALTER TABLE PRODUIT DROP COLUMN PU_VENTE_DT;
+ALTER TABLE PRODUIT DROP COLUMN PU_VENTE_GR;
+--
+ALTER TABLE PRODUIT ADD COLUMN PMP DECIMAL(10,2) NOT NULL DEFAULT 0;
+ALTER TABLE PRODUIT ADD COLUMN MARGE_DT    DOUBLE NOT NULL DEFAULT 0;
+ALTER TABLE PRODUIT ADD COLUMN MARGE_GR    DOUBLE NOT NULL DEFAULT 0;
+ALTER TABLE PRODUIT ADD COLUMN MARGE_DGR    DOUBLE NOT NULL DEFAULT 0;
+ALTER TABLE PRODUIT ADD COLUMN MARGE_SGR    DOUBLE NOT NULL DEFAULT 0;
+--18/05/2015;
+ALTER TABLE PRODUIT ADD CONSTRAINT CHECK_QTE_GLOBAL CHECK (QTE_GLOBAL >= 0);
+--12/04/2015;
+ALTER TABLE PRODUIT ADD COLUMN ID_FAM INT NOT NULL DEFAULT 0;
+UPDATE PRODUIT P SET P.ID_FAM = (SELECT ID_FAM FROM CATEGORIE C WHERE C.ID = P.ID_CATEG);
+ALTER TABLE PRODUIT ADD CONSTRAINT PROD_FAM_FK FOREIGN KEY (ID_FAM) REFERENCES FAMILLE ON DELETE RESTRICT;
+--
+ALTER TABLE PRODUIT ADD COLUMN QTE_GLOBAL DOUBLE NOT NULL DEFAULT 0;
+-- 31/01/2015
+ALTER TABLE PRODUIT DROP COLUMN ID_STOCK;
+-- 02/01/2015
+ALTER TABLE PRODUIT DROP COLUMN QTE_VRAC;
+-- 13/11/2014
+ALTER TABLE PRODUIT DROP COLUMN QTE_STK;
+ALTER TABLE PRODUIT ADD COLUMN QTE_STK DOUBLE NOT NULL DEFAULT 0;
+-- 04/11/2014
+ALTER TABLE PRODUIT DROP COLUMN QTE_VRAC;
+ALTER TABLE PRODUIT ADD COLUMN QTE_VRAC DOUBLE NOT NULL DEFAULT 0;
+-- 27/10/2014
+ALTER TABLE PRODUIT ADD CONSTRAINT CHECK_QTE_STK CHECK (QTE_GLOBAL >= 0);
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+--================================ VIEWS =====================================--
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+-- 10/05/2016;
+DROP VIEW V_PRODUIT;
+CREATE VIEW V_PRODUIT AS
+SELECT PROD.ID, PROD.ID_FAM, PROD.ID_CATEG, COD_BAR AS "Code", PROD.DES AS "Désignation", 
+    QTE_GLOBAL AS "Qte.Stock"
+FROM PRODUIT PROD;
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+--=============================== QUERIES ====================================--
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+SELECT * FROM V_PRODUIT;
+SELECT * FROM PRODUIT WHERE ID = ?;
+INSERT INTO PRODUIT (ID_FAM, ID_CATEG, COD_BAR, DES, QTE_MIN, QTE_MAX, MARGE_DT, MARGE_GR, MARGE_DGR, MARGE_SGR)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+UPDATE PRODUIT SET ID_FAM = ?, ID_CATEG = ?, COD_BAR = ?, DES = ?, QTE_MIN = ?, QTE_MAX = ?, 
+    MARGE_DT = ?, MARGE_GR = ?, MARGE_DGR = ?, MARGE_SGR = ? WHERE ID = ?;
+DELETE FROM PRODUIT WHERE ID = ?;
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+--============================== TRIGGERS ====================================--
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+-- 29/12/2014
+DROP TRIGGER T_AFT_UPD_PROD_DEL_QUANTIF;
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+-- 14/03/2015
+DROP TRIGGER T_AFT_UPD_CBPROD_UPD_CBENSTK;
+CREATE TRIGGER T_AFT_UPD_CBPROD_UPD_CBENSTK
+AFTER UPDATE OF COD_BAR ON PRODUIT
+REFERENCING NEW ROW AS NEW_PROD  OLD ROW AS OLD_PROD
+FOR EACH ROW
+    UPDATE EN_STOCK SET 
+        COD_BAR = NEW_PROD.COD_BAR 
+    WHERE COD_BAR = OLD_PROD.COD_BAR;
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--  

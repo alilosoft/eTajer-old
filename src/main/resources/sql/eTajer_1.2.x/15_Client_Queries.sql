@@ -1,0 +1,83 @@
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+--================================ CREATION ==================================--
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+-- 10/04/2015
+CREATE TABLE FAMILLE_CL(ID INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+                        DES VARCHAR(40) NOT NULL,
+                        SOUMIS_TVA BOOLEAN NOT NULL DEFAULT TRUE,
+                        REMISE DOUBLE NOT NULL DEFAULT 0,
+                        CONSTRAINT FAMCL_PK PRIMARY KEY (ID));
+-- init
+INSERT INTO FAMILLE_CL (DES, SOUMIS_TVA, MARGE, REMISE) VALUES ('Divers', true, 0, 0);
+-- 10/04/2015
+DROP TABLE CLIENT;
+
+CREATE TABLE CLIENT(ID INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+                    ID_FAM INT NOT NULL,
+                    CODE VARCHAR(5) NOT NULL UNIQUE,
+                    NOM VARCHAR(40) NOT NULL, 
+                    ADR VARCHAR(50) DEFAULT NULL,
+                    TEL VARCHAR(20) DEFAULT NULL,
+                    MOBILE VARCHAR(15) DEFAULT NULL,
+                    EMAIL VARCHAR(50) DEFAULT NULL,
+                    NUM_RC VARCHAR(25) DEFAULT NULL,
+                    NUM_FISC VARCHAR(25) DEFAULT NULL,
+                    NUM_ART  VARCHAR(25) DEFAULT NULL,
+                    APP_TVA BOOLEAN NOT NULL DEFAULT TRUE,
+                    DETTE DECIMAL(12,2) NOT NULL DEFAULT 0, -- MAX: 9,999,999,999.00
+                    CONSTRAINT CLIENT_PK PRIMARY KEY (ID),
+                    CONSTRAINT CL_FAM_FK FOREIGN KEY (ID_FAM) REFERENCES FAMILLE_CL ON DELETE RESTRICT);
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+--============================== ALTERATION ==================================--
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+--12/05/2015
+ALTER TABLE CLIENT ALTER COLUMN TEL SET DATA TYPE VARCHAR(20);
+ALTER TABLE CLIENT ALTER COLUMN MOBILE SET DATA TYPE VARCHAR(21);
+--10/04/2015
+ALTER TABLE CLIENT ADD COLUMN ID_FAM INT NOT NULL DEFAULT 1;
+ALTER TABLE CLIENT ADD CONSTRAINT CL_FAM_FK FOREIGN KEY (ID_FAM) REFERENCES FAMILLE_CL ON DELETE RESTRICT;
+--29/03/2015
+ALTER TABLE CLIENT ALTER COLUMN NUM_RC SET DATA TYPE VARCHAR(25);
+ALTER TABLE CLIENT ALTER COLUMN NUM_FISC SET DATA TYPE VARCHAR(25);
+ALTER TABLE CLIENT ALTER COLUMN NUM_ART SET DATA TYPE VARCHAR(25);
+-- 28/03/2015
+ALTER TABLE CLIENT ADD COLUMN FELLAH BOOLEAN NOT NULL DEFAULT FALSE;
+-- 19/03/2015
+ALTER TABLE CLIENT ADD COLUMN MOBILE VARCHAR(15) DEFAULT NULL;
+ALTER TABLE CLIENT ADD COLUMN EMAIL VARCHAR(50) DEFAULT NULL;
+-- 15/11/2014
+ALTER TABLE CLIENT DROP COLUMN APP_TVA;
+ALTER TABLE CLIENT ADD COLUMN APP_TVA BOOLEAN NOT NULL DEFAULT TRUE;
+-- 25/10/2014
+ALTER TABLE CLIENT DROP COLUMN CREDIT_VNT;
+ALTER TABLE CLIENT DROP COLUMN CREDIT_HORS_VNT;
+ALTER TABLE CLIENT ADD COLUMN DETTE DECIMAL(10,2) NOT NULL DEFAULT 0;
+--ALTER TABLE CLIENT ADD COLUMN APP_TVA CHAR(1) NOT NULL DEFAULT 'Y';
+-- 18/03/2013
+--ALTER TABLE CLIENT ADD COLUMN CREDIT DECIMAL(10,2) NOT NULL DEFAULT 0;
+--ALTER TABLE CLIENT ADD COLUMN CREDIT_ARRONDI DECIMAL(10,2) NOT NULL DEFAULT 0;
+-- 04/10/2013
+--ALTER TABLE CLIENT DROP COLUMN CREDIT_ARRONDI;
+-- 05/10/2013
+--ALTER TABLE CLIENT ADD COLUMN CREDIT_INITIAL DECIMAL(10,2) NOT NULL DEFAULT 0;
+-- 03/11/2013
+--ALTER TABLE CLIENT ADD COLUMN REFER VARCHAR(5);
+--ALTER TABLE CLIENT ADD CONSTRAINT UNIQ_REFER UNIQUE (REFER);
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+--================================ VIEWS =====================================--
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+-- 20/11/2013
+DROP VIEW V_CLIENT;
+
+CREATE VIEW V_CLIENT AS
+SELECT CL.ID, CL.CODE AS "Code", NOM AS "Client", ADR AS "Adresse", TEL AS "N° Tél/Fax", MOBILE AS "Tél.Portable", EMAIL AS "E-Mail", DETTE AS "Crédit(DA)"
+FROM CLIENT CL;
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+--=============================== QUERIES ====================================--
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
+SELECT * FROM V_CLIENT;
+SELECT * FROM CLIENT WHERE ID = ?;
+INSERT INTO CLIENT (CODE, NOM, ADR, TEL, MOBILE, EMAIL, NUM_RC, NUM_FISC, NUM_ART, APP_TVA) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+UPDATE CLIENT SET CODE = ?, NOM = ?, ADR = ?, TEL = ?, MOBILE = ?, EMAIL = ?, NUM_RC = ?, NUM_FISC = ?, NUM_ART = ?, APP_TVA = ? WHERE ID = ?;
+DELETE FROM CLIENT WHERE ID = ?;
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--
